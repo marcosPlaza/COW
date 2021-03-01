@@ -6,7 +6,7 @@ html, body {
     background: #DFDBC5;
 }
 
-.header2 {
+.header {
     width: 100%;
     background-color: #477998;
     text-align: center;
@@ -14,49 +14,18 @@ html, body {
     padding: 10px;
 }
 
-.header3 {
-    width: 100%;
-    background-color: #DFDBC5;
-    text-align: center;
-    font-size: 20px;
-    top: 0px;
-    padding: 10px;
-}
-
-img.headericonleft {
-    position: fixed;
-    top: 23px;
-    left: 400px;
-}
-
-img.headericonright {
-    position: fixed;
-    top: 23px;
-    right: 400px;
-}
-
-img.pika {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-img.bulbasaur {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-}
-
-.center2 {
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    background-color: #DFDBC5;
-    padding: 5px;
+hr {
+    opacity: 20%;
 }
 
 h1.title {
     font-weight: lighter;
+    color: #FFFFFF;
+}
+
+h1.subtitle {
+    font-weight: lighter;
+    font-size: 20px;
     color: #FFFFFF;
 }
 
@@ -67,57 +36,96 @@ h1.bigtitle {
 }
 
 h2.webtitle {
-    font-weight: lighter;
-    color: #DFDBC5;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: #477998;
 }
 
-h3.footertext {
-    font-size: 16px;
-    font-weight: lighter;
+h2.webtitle2 {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
     color: #FFFFFF;
 }
 
-.footer2 {
-    background-color: #A3333D;
-    text-align: center;
+h2.titleitem {
+    text-align: left;
+    font-weight: lighter;
     font-size: 20px;
-    padding: 5px;
-    bottom: 0px;
-    position: fixed;
-    width: 100%;
-
+    color: darkblue;
 }
 
-.searchform {
+h2.regions {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #477998;
+}
+
+img.listicon {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+img.pika {
+    position: absolute;
+    top: 100px;
+    right: 70px;
+}
+
+img.bulbasaur {
+    position: absolute;
+    top: 100px;
+    left: 70px;
+}
+
+img.charizardx {
+    position: absolute;
+    bottom: -1400px;
+    left: 40px;
+}
+
+input {
+    color: gray;
+}
+
+.searchbox {
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 30px;
+    margin-right: 40px;
     background-color: #FFFFFF;
     text-align: center;
-    font-size: 15px;
-    padding: 10px;
-}
-
-.MainBody {
-    width: auto;
-    height: auto;
-}
-
-.header {
-    background-color: green;
-    height: 100%;
-    text-align: center;
     font-size: 20px;
-    color: white;
-    margin: 0px;
-    padding: 0px;
+    top: 0px;
+    padding: 20px;
 }
 
-.header h3 {
-    font-size: 30px;
-    line-height: 40px;
+.center {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    background-color: #DFDBC5;
+    padding: 5px;
+}
+
+.salesitem {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
 .left {
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #888888;
     width: 25%;
-    height: 100%;
+    height: auto;
     margin-left: 30px;
     margin-top: 60px;
     padding: 0px;
@@ -126,57 +134,59 @@ h3.footertext {
     float: left;
 }
 
-.right {
-    width: 65%;
-    height: 100%;
-    margin-right: 40px;
+.leftblue {
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #888888;
+    width: 25%;
+    height: auto;
+    margin-left: 30px;
     margin-top: 60px;
     padding: 0px;
+    background-color: #477998;
+    text-align: center;
+    float: left;
+}
+
+.right {
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #888888;
+    width: 65%;
+    height: auto;
+    margin-right: 40px;
+    margin-top: 60px;
     background-color: #FFFFFF;
     text-align: center;
     float: right;
 }
 
-.left h4 {
-    font-size: 20px;
-    color: navy;
-    margin-top: 200px;
-}
-
-.left h5 {
-    font-size: 20px;
-    color: navy;
-}
-
-.center {
-    width: auto;
-    background-color: red;
-    margin-top: -16.1px;
-    margin-left: 150px;
-    padding: 0px;
-    height: 500px;
-}
-
-.center h1 {
-    color: navy;
-    text-align: center;
-    padding: 250 0 0 0;
-    vertical-align: bottom;
-    line-height: 500px;
+.formwhatpokemon {
+    padding: 10px;
+    padding-bottom: 50px;
 }
 
 .footer {
-    background: yellow;
-    background-color: green;
-    height: 50 px;
-    text-align: center;
-    padding-left: 0px;
-    font-size: 20px;
+    background-color: #A3333D;
     color: white;
-    margin: -30px 0px 0px 0px;
+    text-align: center;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
 }
 
-.footer h3 {
-    font-size: 30px;
-    line-height: 40px;
-}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid white;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(184, 135, 11, 0.664);
+  }

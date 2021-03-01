@@ -1,3 +1,4 @@
+<!-- Inicio html -->
 <!DOCTYPE html> <!-- Le decimos al navegador como debe interpretar el documento -->
 <html lang="en">
 <!-- Lenguaje -->
@@ -8,9 +9,10 @@
     <meta charset="utf-8">
     <!-- codificacion de caracteres. Importante para prevenir UTF-7 XSS Cheat Sheet (vulnerabilidad) -->
     <!-- https://cybmeta.com/meta-charset-como-y-por-que-utilizarlo-siempre -->
-    <title>Booking In Kanto</title>
+    <title>The Poké-Booking Service | Hey trainer, where do you wanna go?</title>
     <!-- Mi proyecto se basa en una web para reservar hotel en las principales ciudades de la region de Kanto (Region ficticia de la franquicia de videojuegos Pokemon) -->
     <link rel="stylesheet" href="css/style_apartado1.css" type="text/css">
+    <link rel="shortcut icon" href="images/pokeball.png">
     <!-- Utilizaremos nuestra propia hoja de estilo en cascada/css -->
 </head>
 <!-- Final head -->
@@ -18,50 +20,227 @@
 <!-- Inicio body -->
 
 <body>
-    <!--<img class="headericonleft" src="images/pokeball.png">
-    <img class="headericonright" src="images/pokeball.png">-->
-    <div class="header2">
+    <!-- Inicio header -->
+    <div class="header">
         <h1 class="title">The <b>Poké-B<img src="images/pokeball_small.png"><img
-                    src="images/pokeball_small.png">king</b> Service
-        </h1>
-        <img class="pika" src="images/pikachu.png">
-        <img class="bulbasaur" src="images/bulbasaur.png">
+                    src="images/pokeball_small.png">king</b> Service</h1>
+        <h1 class="subtitle">Book hotels around the Poké-globe</h1>
+        <a href="#"><img class="listicon" src="images/listicon.png"></a>
     </div>
+    <!-- Final header -->
 
+    <!-- Algunas imagenes decorativas -->
+    <a href="https://www.serebii.net/pokedex-sm/025.shtml"><img class="pika" src="images/pikachu.png"></a>
+    <a href="https://www.serebii.net/pokedex-sm/001.shtml"><img class="bulbasaur" src="images/bulbasaur.png"></a>
+    <a href="https://www.serebii.net/pokedex-sm/006.shtml"><img class="charizardx" src="images/charizardx.png"></a>
 
-    <div class="center2">
+    <!-- Envoltorio del contenido principal -->
+    <div class="center">
 
+        <!-- Titulo de bienvenida -->
         <h1 class="bigtitle">Explore the <b>Pokémon</b> world!</h1>
-        <div class="header3">
-            <form action="http://www.google.com/search">
+
+        <!-- Caja de busqueda de hoteles por ciudad, fecha y numero de personas -->
+        <div class="searchbox">
+            <table>
+                <tr>
+                    <form action="#"></form> <!-- Formulario ficticio, debido a que no tenemos una base de datos con los diferentes hoteles disponibles -->
+                    <th>
+                        <div>
+                            City name?
+                            <input name="q" value="City name here...">
+                        </div>
+                    </th>
+                    <th>
+                        <div>
+                            Date?
+                            <input type="date" id="start" name="trip-start" value="2021-01-01"
+                                min="2021-01-01" max="2021-12-31">
+                            →
+                            <input type="date" id="end" name="trip-end" value="2021-01-02"
+                                min="2021-01-01" max="2021-12-31">
+                        </div>
+                    </th>
+                    <th>
+                        <div>
+                            How many people?
+                            <input name="q" style="color: gray;" value="1, 2, 3...">
+                            <input type="submit" value="Search">
+                        </div>
+
+                    </th>
+                    </form>
+                </tr>
+            </table>
+        </div>
+        <!-- Fin de caja de busqueda -->
+
+        <!-- Caja de busqueda de hoteles por regiones -->
+        <div class="left">
+            <h2 class="webtitle">So many regions to visit...</h2>
+            <dl>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/kanto/">
+                        <h2 class="regions">Kanto</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/johto/">
+                        <h2 class="regions">Johto</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/hoenn/">
+                        <h2 class="regions">Hoenn</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/sinnoh/">
+                        <h2 class="regions">Sinnoh</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/unova/">
+                        <h2 class="regions">Unova</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/kalos/">
+                        <h2 class="regions">Kalos</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/alola/">
+                        <h2 class="regions">Alola</h2>
+                    </a>
+                </dt>
+                <hr>
+                <dt><a href="https://www.serebii.net/pokearth/galar/">
+                        <h2 class="regions">Galar</h2>
+                    </a>
+                </dt>
+            </dl>
+        </div>
+        <!-- Fin de caja de busqueda -->
+
+        <!-- Zona de visualizacion de hoteles orenados segun un criterio con imagenes y habitaciones disponibles -->
+        <div class="right">
+            <h2 class="webtitle">Look what's new today</h2>
+            <hr>
+            <div class="salesitem">
+                <h2 class="websubtitle">Bellchime Trail Hotel on <a
+                        href="https://pokemon.fandom.com/wiki/Ecruteak_City">Ecruteak City</a></h2>
+                <a href="#">
+                    <h3><small>View location on map</small></h3>
+                </a>
+                <img src="images/irisset.png">
+                <table>
+                    <caption>
+                        <h2>Available rooms</h2>
+                    </caption>
+                    <tr>
+                        <th>Room type</th>
+                        <th>Sleeps</th>
+                        <th>Price for 1 night</th>
+                    </tr>
+                    <tr>
+                        <td>Luxury room <a href="#">(Book here)</a></td>
+                        <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
+                        <td>170000₽</a></td>
+                    </tr>
+                    <tr>
+                        <td>Basic room <a href="#">(Book here)</a></td>
+                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                        <td>30000₽</td>
+                    </tr>
+                    <tr>
+                        <td>Onsen room <a href="#">(Book here)</a></td>
+                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                        <td>100000₽</td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+            <div class="salesitem">
+                <h2 class="websubtitle">Estival Avenue Hostel on <a
+                        href="https://pokemon.fandom.com/wiki/Lumiose_City">Lumiose City</a></h2>
+                <a href="#">
+                    <h3><small>View location on map</small></h3>
+                </a>
+                <img src="images/lumiose.png">
+                <table>
+                    <caption>
+                        <h2>Available rooms</h2>
+                    </caption>
+                    <tr>
+                        <th>Room type</th>
+                        <th>Sleeps</th>
+                        <th>Price for 1 night</th>
+                    </tr>
+                    <tr>
+                        <td>Luxury room <a href="#">(Book here)</a></td>
+                        <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
+                        <td>170000₽</a></td>
+                    </tr>
+                    <tr>
+                        <td>Basic room <a href="#">(Book here)</a></td>
+                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                        <td>30000₽</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- Fin de zona de visualizacion de hoteles -->
+
+        <!-- Ranking de hoteles mas reservados -->
+        <div class="left">
+            <h2 class="webtitle">Ranking</h2>
+            <ol>
+                <li style="text-align: center;">
+                    <h2 class="regions">Bellchime Trail Hotel</h2>
+                </li>
+                <li>
+                    <h2 class="regions">Silph Co. Hotel</h2>
+                </li>
+                <li>
+                    <h2 class="regions">Estival Avenue Hostel</h2>
+                </li>
+                <li>
+                    <h2 class="regions">Water Gym Complex</h2>
+                </li>
+                <li>
+                    <h2 class="regions">Mauville Game Corner Complex</h2>
+                </li>
+                <li>
+                    <h2 class="regions">Jubilife Corner</h2>
+                </li>
+            </ol>
+        </div>
+        <!-- Fin ranking de hoteles mas reservados -->
+
+        <!-- Formulario busqueda de tu pokemon favorito (busqueda en google) -->
+        <!-- Puede ser util recoger estadisticas sobre los pokemon favoritos de los visitantes. En cada region y en cada zona existen pokemon diferentes.-->
+        <!-- De esta manera recomendamos los hoteles cercanos a los pokemon mas buscados por los entrenadores. -->
+        <div class="leftblue">
+            <h2 class="webtitle2">Hey trainer, what is your favourite Pokémon?</h2>
+            <form class="formwhatpokemon" action="http://www.google.com/search">
                 <div>
-                    What is your favourite pokémon?:
-                    <input name="q">
-                    <input type="submit" value="Go!">
+                    <input name="q" value="Search on Google..." style="color: gray;">
+                    <input style="size: 20%;" type="submit" value="Go!">
                 </div>
             </form>
         </div>
-        <div class="left">
-            <h1>Choose the region</h1>
-            <dl>
-                <dt><h7>Coffee</h7></dt>
-                <dd><h7>Coffee</h7></dd> 
-                <dt><h7>Coffee</h7></dt>
-                <dd><h7>Coffee</h7></dd>
-            </dl>
-        </div>
-        <div class="right">
-            <h1>-30% off in Ecruteak city</h1>
-            <img src="images/iris2.jpg">
-        </div>
+        <!-- Fin formulario -->
     </div>
 
-    <div class="footer2">
-        <h3 class="footertext">Trabajo realizado por Marcos Plaza González para la asignatura de Computació Orientada al
-            Web - Apartat 1 de la práctica 1</h3>
+    <!-- Footer -->
+    <div class="footer">
+        <p>Marcos Plaza González. Computació Orientada al web. Pràctica 1, apartat 1.</p>
     </div>
+    <!-- Fin footer -->
 
 </body>
 <!-- Final body -->
 
 </html>
+<!-- Final html -->
