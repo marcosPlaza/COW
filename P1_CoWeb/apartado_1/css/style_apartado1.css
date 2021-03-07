@@ -3,7 +3,7 @@ html, body {
     margin: 0px;
     padding: 0px;
     font: normal 12px/1.8em Arial, Helvetica, sans-serif;
-    background: #DFDBC5;
+    background-image: url("../images/Ilustración-sin-título.png");
 }
 
 .header {
@@ -35,6 +35,7 @@ h1.subtitle {
 }
 
 h1.bigtitle {
+    background-color: transparent;
     font-weight: lighter;
     font-size: 65px;
     color: #291F1E;
@@ -77,18 +78,24 @@ img.listicon {
 
 img.pika {
     position: absolute;
-    top: 100px;
-    right: 70px;
+    width: 11%;
+    height: auto;
+    top: 13%;
+    right: 7%;
 }
 
 img.bulbasaur {
     position: absolute;
-    top: 100px;
-    left: 70px;
+    width: 11%;
+    height: auto;
+    top: 13%;
+    left: 7%;
 }
 
 img.charizardx {
     position: absolute;
+    width: 20%;
+    height: auto;
     bottom: -1400px;
     left: 40px;
 }
@@ -114,7 +121,7 @@ input {
     text-align: center;
     width: 100%;
     height: auto;
-    background-color: #DFDBC5;
+    background-color: transparent;
     padding: 5px;
 }
 

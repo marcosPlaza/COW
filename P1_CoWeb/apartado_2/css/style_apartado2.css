@@ -1,3 +1,18 @@
 .navbar {
     background-color: #477998;
+    text-align: center;
+}
+
+h1.title {
+    color: white;
+}
+
+footer.fixed-bottom {
+    text-align: center;
+    background-color: #A3333D;
+}
+
+p.author {
+    padding: 10px;
+    color: white;
 }
