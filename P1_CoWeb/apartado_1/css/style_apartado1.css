@@ -1,126 +1,27 @@
-html, body {
-    height: 100%;
+html {
+    position: relative;
+}
+
+body {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    padding: 0px;
+    margin-bottom: 75px;
     font: normal 12px/1.8em Arial, Helvetica, sans-serif;
-    background-image: url("../images/Ilustración-sin-título.png");
-    margin-bottom:100px;
+    background-color: #d2d2d2;
+    background-image: url("../images/background.png");
 }
 
 .header {
     width: 100%;
-    background-color: #477998;
+    height: auto;
+    background-color: #365e79;
     text-align: center;
     font-size: 20px;
     padding: 10px;
 }
 
-.hotelpictures{
-    width: 100%;
-    height: auto;
-}
-
-hr {
-    opacity: 20%;
-}
-
-.title {
-    font-weight: lighter;
-    color: #FFFFFF;
-}
-
-.subtitle {
-    font-weight: lighter;
-    font-size: 20px;
-    color: #FFFFFF;
-}
-
-.bigtitle {
-    background-color: transparent;
-    font-weight: lighter;
-    font-size: 65px;
-    color: #291F1E;
-}
-
-.webtitle {
-    padding: 10px;
-    font-weight: bold;
-    font-size: 22px;
-    color: #477998;
-}
-
-.webtitle2 {
-    padding: 10px;
-    font-weight: bold;
-    font-size: 24px;
-    color: #FFFFFF;
-}
-
-.titleitem {
-    text-align: left;
-    font-weight: lighter;
-    font-size: 20px;
-    color: darkblue;
-}
-
-.regions {
-    padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: lighter;
-    color: #477998;
-}
-
-.listicon {
-    position: absolute;
-    top: 20px;
-    left: 40px;
-}
-
-.pika {
-    position: absolute;
-    width: 11%;
-    height: auto;
-    top: 13%;
-    right: 7%;
-}
-
-.bulbasaur {
-    position: absolute;
-    width: 11%;
-    height: auto;
-    top: 13%;
-    left: 7%;
-}
-
-.charizardx {
-    position: absolute;
-    width: 23%;
-    height: auto;
-    bottom: -1300px;
-    left: 40px;
-}
-
-input {
-    color: gray;
-}
-
-.searchbox {
-    box-shadow: 5px 5px 10px #888888;
-    border-radius: 5px;
-    margin-top: 5%;
-    margin-left: 30px;
-    margin-right: 40px;
-    background-color: #FFFFFF;
-    text-align: center;
-    font-size: 20px;
-    top: 0px;
-    padding: 20px;
-}
-
-.center {
+.centralwrapper {
     text-align: center;
     width: 100%;
     height: auto;
@@ -128,12 +29,61 @@ input {
     padding: 5px;
 }
 
-.salesitem {
+.footer {
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    height: 50px;
+    background-color: #00022e;
+    color: white;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 40px;
-    padding-right: 40px;
-    padding-left: 40px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+.headertitle {
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+
+.buttonsection {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    margin-left: 85%;
+    margin-top: -7%;
+    text-align: center;
+}
+
+.searchboxtitle {
+    margin-top: 2%;
+    margin-left: 40px;
+    text-align: left;
+}
+
+.bluetitles {
+    color: #00022e;
+    font-weight: bold;
+}
+
+.bluetitleslight {
+    color: #00022e;
+    font-weight: lighter;
+}
+
+.searchbox {
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 5px;
+    margin-top: 0%;
+    margin-left: 30px;
+    margin-right: 40px;
+    background-color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    top: 0px;
+    padding: 20px;
 }
 
 .left {
@@ -157,7 +107,7 @@ input {
     margin-left: 30px;
     margin-top: 60px;
     padding: 0px;
-    background-color: #477998;
+    background-color: #365e79;
     text-align: center;
     float: left;
 }
@@ -172,6 +122,67 @@ input {
     background-color: #FFFFFF;
     text-align: center;
     float: right;
+    margin-bottom: 15%;
+}
+
+.hotelpictures {
+    width: 75%;
+    height: auto;
+}
+
+hr {
+    opacity: 20%;
+}
+
+.webtitle {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: #365e79;
+}
+
+.webtitle2 {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.textitem {
+    font-size: 14px;
+    color: #00022e;
+    text-align: justify;
+}
+
+.textitemlittle {
+    color: #00022e;
+    text-align: justify;
+}
+
+.regions {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #365e79;
+}
+
+.listicon {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+input {
+    color: gray;
+}
+
+.salesitem {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
 .formwhatpokemon {
@@ -179,29 +190,16 @@ input {
     padding-bottom: 50px;
 }
 
-.footer {
-    background-color: #A3333D;
-    color: white;
-    text-align: center;
-    font-size: 15px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    height: 50px;
-}
-
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-  }
-  
-  td, th {
+}
+
+td {
     border: 1px solid white;
-    text-align: left;
+    background-color: #d2d2d2;
     padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: rgba(184, 135, 11, 0.664);
-  }
+    text-align: center;
+    width: 30%;
+}

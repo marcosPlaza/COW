@@ -23,23 +23,42 @@
 <body>
     <!-- Inicio header -->
     <div class="header">
-        <h1 class="title">The <b>Poké-B<img src="images/pokeball_small.png"><img
-                    src="images/pokeball_small.png">king</b> Service</h1>
-        <h1 class="subtitle">Book hotels around the Poké-globe</h1>
-        <!-- Dropdown here -->
+        <h1 class="headertitle">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
+        <h3 class="headertitle">Book hotels around the Poké-globe</h3>
+
+        <div class="buttonsection">
+            <div>
+                <button type="button">
+                    <h7> Need help?</h7>
+                </button>
+            </div>
+            <div>
+                <button type="button">
+                    <h7> Sign Up</h7>
+                </button>
+            </div>
+            <div>
+                <button type="button">
+                    <h7> Sign In</h7>
+                </button>
+            </div>
+            <div>
+                <button type="button">
+                    <h7> <a href="https://github.com/marcosPlaza" target="_blank">About me</a></h7>
+                </button>
+            </div>
+        </div>
     </div>
     <!-- Final header -->
 
-    <!-- Algunas imagenes decorativas -->
-    <a href="https://www.serebii.net/pokedex-sm/025.shtml"><img class="pika" src="images/pikachu.png"></a>
-    <a href="https://www.serebii.net/pokedex-sm/001.shtml"><img class="bulbasaur" src="images/bulbasaur.png"></a>
-    <a href="https://www.serebii.net/pokedex-sm/006.shtml"><img class="charizardx" src="images/charizardx.png"></a>
-
     <!-- Envoltorio del contenido principal -->
-    <div class="center">
+    <div class="centralwrapper">
 
         <!-- Titulo de bienvenida -->
-        <h1 class="bigtitle">Explore the <b>Pokémon</b> world!</h1>
+        <div class="searchboxtitle">
+            <h1 class="bluetitles">Explore the <strong>Pokémon</strong> world! Find deals on hotels, homes, and much more...</h1>
+            <h3 class="bluetitleslight">From cozy country homes to funky city apartments</h3>
+        </div>
 
         <!-- Caja de busqueda de hoteles por ciudad, fecha y numero de personas -->
         <div class="searchbox">
@@ -50,7 +69,7 @@
                     <th>
                         <div>
                             City name?
-                            <input name="q" value="City name here...">
+                            <input name="city" value="City name here...">
                         </div>
                     </th>
                     <th>
@@ -62,8 +81,8 @@
                     </th>
                     <th>
                         <div>
-                            How many people?
-                            <input name="q" style="color: gray;" value="1, 2, 3...">
+                            How many People?
+                            <input type="number" style="color: gray;" value="1" min=0>
                             <input type="submit" value="Search">
                         </div>
 
@@ -127,11 +146,15 @@
             <h2 class="webtitle">Look what's new today</h2>
             <hr>
             <div class="salesitem">
-                <h2 class="websubtitle">Bellchime Trail Hotel on <a href="https://pokemon.fandom.com/wiki/Ecruteak_City">Ecruteak City</a></h2>
+                <h2>Bellchime Trail Hotel on <a href="https://pokemon.fandom.com/wiki/Ecruteak_City">Ecruteak City</a></h2>
                 <a href="#">
                     <h3><small>View location on map</small></h3>
                 </a>
-                <img src="images/irisset.png" class="hotelpictures">
+                <img src="images/irisset.png" class="hotelpictures"></img>
+                <h2>Brief description</h2>
+                <p class="textitem">Tower belonging to an old Japanese temple where the legendary pokémon Ho-oh is usually worshiped. It has amazing views at all times of the year, as well as facilities of the highest luxury. It is ideal for couples as the legend says that
+                    those who manage to see the seven-colored bird will enjoy eternal bliss.</p>
+                <p class="textitemlittle">* The facilities are made of a special fireproof wood. However, many of the furniture is made of oak wood, therefore please avoid that the fire-type pokémon roam freely.</p>
                 <table>
                     <caption>
                         <h2>Available rooms</h2>
@@ -161,11 +184,14 @@
             </div>
             <hr>
             <div class="salesitem">
-                <h2 class="websubtitle">Estival Avenue Hostel on <a href="https://pokemon.fandom.com/wiki/Lumiose_City">Lumiose City</a></h2>
+                <h2>Estival Avenue Hostel on <a href="https://pokemon.fandom.com/wiki/Lumiose_City">Lumiose City</a></h2>
                 <a href="#">
                     <h3><small>View location on map</small></h3>
                 </a>
-                <img src="images/lumiose.png" class="hotelpictures">
+                <img src="images/lumiose.png" class="hotelpictures"></img>
+                <h2>Brief description</h2>
+                <p class="textitem">Hostel located in one of the four main avenues of this city. It has refined luxury facilities ideal for all types of guests. Food is undoubtedly one of the strong points of this place, as it has the best trio of chefs in the world, Cilian,
+                    Chili and Kress.</p>
                 <table>
                     <caption>
                         <h2>Available rooms</h2>
@@ -224,7 +250,7 @@
             <h2 class="webtitle2">Hey trainer, what is your favourite Pokémon?</h2>
             <form class="formwhatpokemon" action="http://www.google.com/search">
                 <div>
-                    <input name="q" value="Search on Google..." style="color: gray;">
+                    <input name="q" value="Mine is bulbasaur..." style="color: gray;">
                     <input style="size: 20%;" type="submit" value="Go!">
                 </div>
             </form>

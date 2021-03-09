@@ -32,12 +32,15 @@
 
     <!-- Inicio navbar -->
     <nav class="navbar">
-        <div class="titlebox">
+
+        <!-- envoltorio del titulo -->
+        <div class="titlebox" href=#>
             <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img
                         src="images/pokeball_small.png">king</b> Service</h1>
             <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
         </div>
 
+        <!-- botones del navbar -->
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn"><i class="fa fa-question-circle" style="color: white;"></i>
@@ -79,6 +82,7 @@
     <div class="container-fluid wrapper">
         <div class="row">
             <div class="col-12">
+                <!-- caja de busqueda -->
                 <div class="searchboxtitle">
                     <h5 class="contenttitles">Explore the <strong>Pokémon</strong> world! Find deals on hotels, homes, and much more...</h5>
                     <h7 style="color: #00022e; font-weight: normal;">From cozy country homes to funky city apartments
@@ -89,21 +93,21 @@
                         <form class="form-inline">
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight">Place to visit</h7>
-                                <input type="text" size="27" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
+                                <input type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight" style="margin-left: 33px;">Check In-Out</h7>
-                                <input type="date" size="23" class="form-control" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2021-12-31" style="margin-left: 10px;">
+                                <input type="date" size="17" class="form-control" id="start" name="trip-start" value="2021-01-01" min="2021-01-01" max="2021-12-31" style="margin-left: 10px;">
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartext" style="margin-left: 10px;">→</h7>
-                                <input type="date" size="23" class="form-control" id="end" name="trip-end" value="2021-01-02" min="2021-01-01" max="2021-12-31" style="margin-left: 10px;">
+                                <input type="date" size="17" class="form-control" id="end" name="trip-end" value="2021-01-02" min="2021-01-01" max="2021-12-31" style="margin-left: 10px;">
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
-                                <input type="number" style="width:120px;" min=0 class="form-control" placeholder="2" style="margin-right: 20px;">
+                                <input type="number" style="width:80px;" min=0 class="form-control" placeholder="2" style="margin-right: 20px;">
                             </div>
-                            <button type="submit" class="btn btn-info mb-2" style="margin-left: 80px;"><i class="fas fa-search"
+                            <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search"
                                 style="color: white;"></i>
                                 <h7 class="navbartext"> Search now</h7>
                             </button>
@@ -114,6 +118,7 @@
         </div>
         <div class="row">
             <div class="col-4">
+                <!-- Explorar las regiones -->
                 <div class="box">
                     <div class="content">
                         <h5 class="contenttitles">So many regions to visit...</h5>
@@ -161,6 +166,8 @@
                         </dl>
                     </div>
                 </div>
+
+                <!-- hoteles por ranking -->
                 <div class="box" style="margin-top: 50px;">
                     <div class="content">
                         <h5 class="contenttitles">Hotels by ranking</h5>
@@ -217,6 +224,10 @@
                         </ol>
                     </div>
                 </div>
+
+                <!-- Formulario busqueda de tu pokemon favorito (busqueda en google) -->
+                <!-- Puede ser util recoger estadisticas sobre los pokemon favoritos de los visitantes. En cada region y en cada zona existen pokemon diferentes.-->
+                <!-- De esta manera recomendamos los hoteles cercanos a los pokemon mas buscados por los entrenadores. -->
                 <div class="boxblue" style="margin-top: 50px;">
                     <div class="content">
                         <h6 class="navbartextlight">Hey trainer, what is your favourite <strong>Pokémon</strong>?</h5>
@@ -233,85 +244,93 @@
                 </div>
             </div>
             <div class="col-8">
+                <!-- visual de la informacion general de los hoteles -->
                 <div class="box">
                     <div class="content">
                         <h3 class="contenttitles">Look what's new today</h3>
                         <hr>
                         <div class="container-fluid wrapper">
-                            <h4 class="contenttitleslight">Bellchime Trail Hotel on <a href="https://pokemon.fandom.com/wiki/Ecruteak_City ">Ecruteak City</a><span class="badge badge-secondary" style="margin-left: 10px;">9,8</span></h2>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <a href="# ">
-                                    <h5><small>View location on map</small></h3>
-                                </a>
-                                <img src="images/irisset.png " class="img-fluid rounded">
-                                <table class="table table-striped" style="margin-top: 10px;">
-                                    <caption style="caption-side: top; text-align: center;">
-                                        <h7>General information of the available rooms</h5>
-                                    </caption>
-                                    <tr>
-                                        <th>Room type</th>
-                                        <th>Sleeps</th>
-                                        <th>Price for 1 night</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Luxury room <a href="#">(Book here)</a></td>
-                                        <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
-                                        <td>170000₽</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Basic room <a href="#">(Book here)</a></td>
-                                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
-                                        <td>30000₽</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Onsen room <a href="#">(Book here)</a></td>
-                                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
-                                        <td>100000₽</td>
-                                    </tr>
-                                </table>
+                            <h4 class="contenttitleslight">Bellchime Trail Hotel on <a href="https://pokemon.fandom.com/wiki/Ecruteak_City ">Ecruteak City</a><span class="badge badge-secondary" style="margin-left: 10px;">9,8</span></h4>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <a href="# ">
+                                <h5><small>View location on map</small></h3>
+                            </a>
+                            <img src="images/irisset.png " class="img-fluid rounded" style="width:85%"></img>
+                            <p class="textitem">Tower belonging to an old Japanese temple where the legendary pokémon Ho-oh is usually worshiped. It has amazing views at all times of the year, as well as facilities of the highest luxury. It is ideal for couples as the legend
+                                says that those who manage to see the seven-colored bird will enjoy eternal bliss.</p>
+                            <p class="textitemlittle">* The facilities are made of a special fireproof wood. However, many of the furniture is made of oak wood, therefore please avoid that the fire-type pokémon roam freely.</p>
+                            <table class="table table-striped" style="margin-top: 10px;">
+                                <caption style="caption-side: top; text-align: center;">
+                                    <h7>General information of the available rooms</h5>
+                                </caption>
+                                <tr>
+                                    <th>Room type</th>
+                                    <th>Sleeps</th>
+                                    <th>Price for 1 night</th>
+                                </tr>
+                                <tr>
+                                    <td>Luxury room <a href="#">(Book here)</a></td>
+                                    <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
+                                    <td>170000₽</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Basic room <a href="#">(Book here)</a></td>
+                                    <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                                    <td>30000₽</td>
+                                </tr>
+                                <tr>
+                                    <td>Onsen room <a href="#">(Book here)</a></td>
+                                    <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                                    <td>100000₽</td>
+                                </tr>
+                            </table>
 
                         </div>
                         <hr>
                         <div class="container-fluid wrapper">
-                            <h4 class="contenttitleslight">Estival Avenue Hostel on <a href="https://pokemon.fandom.com/wiki/Lumiose_City ">Lumiose City</a><span class="badge badge-secondary" style="margin-left: 10px;">9,4</span></h2>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <a href="# ">
-                                    <h5><small>View location on map</small></h3>
-                                </a>
-                                <img src="images/lumiose.png " class="img-fluid rounded">
-                                <table class="table table-striped" style="margin-top: 10px;">
-                                    <caption style="caption-side: top; text-align: center;">
-                                        <h7>General information of the available rooms</h5>
-                                    </caption>
-                                    <tr>
-                                        <th>Room type</th>
-                                        <th>Sleeps</th>
-                                        <th>Price for 1 night</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Luxury room <a href="#">(Book here)</a></td>
-                                        <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
-                                        <td>170000₽</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Basic room <a href="#">(Book here)</a></td>
-                                        <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
-                                        <td>30000₽</td>
-                                    </tr>
-                                </table>
+                            <h4 class="contenttitleslight">Estival Avenue Hostel on <a href="https://pokemon.fandom.com/wiki/Lumiose_City ">Lumiose City</a><span class="badge badge-secondary" style="margin-left: 10px;">9,4</span></h4>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <a href="# ">
+                                <h5><small>View location on map</small></h3>
+                            </a>
+                            <img src="images/lumiose.png " class="img-fluid rounded" style="width:85%"></img>
+                            <p class="textitem">Hostel located in one of the four main avenues of this city. It has refined luxury facilities ideal for all types of guests. Food is undoubtedly one of the strong points of this place, as it has the best trio of chefs in the
+                                world, Cilian, Chili and Kress.</p>
+                            <table class="table table-striped" style="margin-top: 10px;">
+                                <caption style="caption-side: top; text-align: center;">
+                                    <h7>General information of the available rooms</h7>
+                                </caption>
+                                <tr>
+                                    <th>Room type</th>
+                                    <th>Sleeps</th>
+                                    <th>Price for 1 night</th>
+                                </tr>
+                                <tr>
+                                    <td>Luxury room <a href="#">(Book here)</a></td>
+                                    <td>1 queen bed (2 people) <a href="#">(More information)</a></td>
+                                    <td>170000₽</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Basic room <a href="#">(Book here)</a></td>
+                                    <td>2 twin beds (2 people) <a href="#">(More information)</a></td>
+                                    <td>30000₽</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+                <!-- Paginador -->
                 <nav aria-label="Page navigation example ">
                     <ul class="pagination justify-content-center ">
                         <li class="page-item disabled ">
@@ -347,13 +366,3 @@
 
 </html>
 <!-- Final html -->
-
-<!--
-    select c.name from courses c join grades g on c.id=g.course_id join students s on g.student_id=s.id where s.name = 'Bart' and c.id in (select g.course_id from grades g join students s on g.student_id=s.id where s.name='Lisa')
-    
-    SELECT bart.course_id
- FROM grades bart
- JOIN grades lisa ON lisa.course_id = bart.course_id
- WHERE bart.student_id = 123
- AND lisa.student_id = 888;
--->

@@ -22,6 +22,20 @@ hr {
     margin-left: 10%;
 }
 
+.textitem {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #00022e;
+    text-align: justify;
+}
+
+.textitemlittle {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #00022e;
+    text-align: justify;
+}
+
 .alerttext {
     margin-left: 5%;
 }
@@ -127,7 +141,7 @@ a:active {
     margin-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: #477998;
+    background-color: #365e79;
 }
 
 .content {
