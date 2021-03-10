@@ -105,11 +105,6 @@ a:active {
     color: white;
 }
 
-.searchboxtitle {
-    color: teal;
-    margin-left: 20px;
-}
-
 .searchbox {
     box-shadow: 5px 5px 10px #888888;
     border-radius: 5px;
@@ -149,7 +144,8 @@ a:active {
     padding: 20px 10px 10px 10px;
 }
 
-.contentform {
+.formwrapper {
+    text-align: center;
     padding: 20px 10px 10px 20px;
 }
 
