@@ -62,16 +62,27 @@
     </div>
     <!-- Fin alert -->
 
-    <div class="container-fluid wrapper">
+    <div class="container-fluid wrapper" style="padding-bottom: 10px;">
         <div class="box">
             <div class="content">
                 <!-- Server en PHP -->
                 <?php
+
+                //Function to determine correctness of the check in/out dates - USAR JavaScript posteriormente?¿
+                function check_dates($checkin, $checkout)
+                {
+                    $date1 = strtotime($checkin);
+                    $date2 = strtotime($checkout);
+                    
+                    if ($date1 > $date2) return false;
+                    return true;
+                }
+
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     //Recepción de datos
                     $city = htmlspecialchars($_POST["city"]);
-                    $trip_start = htmlspecialchars($_POST["trip_start"]);
-                    $trip_end = htmlspecialchars($_POST["trip_end"]);
+                    $trip_start = $_POST["trip_start"];
+                    $trip_end = $_POST["trip_end"];
                     $num_people = (int)$_POST["num_people"];
 
                     //Patrones que deben coincidir
@@ -80,7 +91,7 @@
                     $num_people_pattern = "/^([1-9]|[1-4]\d|50)$/i";
 
                     // Checking input values with regex
-                    if (!preg_match($city_pattern, $city) || !preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people)) {
+                    if (!preg_match($city_pattern, $city) || !preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people) || !check_dates($trip_start, $trip_end)) {
                         header("Location: 400.html");
                     }
                 } else {
@@ -88,7 +99,7 @@
                 }
                 ?>
 
-                <h3>Check the results of your search</h3>
+                <h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3>
                 <hr>
                 <table class="table table-striped" style="margin-top: 10px;">
                     <caption style="caption-side: top; text-align: center;">
