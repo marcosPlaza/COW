@@ -83,17 +83,34 @@
                     if (!preg_match($city_pattern, $city) || !preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people)) {
                         header("Location: 400.html");
                     }
-
-                    //Substituir por página principal
-                    echo "<h3>We have found so many coincidences with the following params given:</h3>\n";
-                    echo "<h5><strong>City introduced was: </strong>$city</h5>\n";
-                    echo "<h5><strong>Check in introduced was: </strong>$trip_start</h5>\n";
-                    echo "<h5><strong>Check out introduced was: </strong>$trip_end</h5>\n";
-                    echo "<h5><strong>Number of people introduced was: </strong>$num_people</h5>\n";
                 } else {
                     header("Location: 405.html");
                 }
                 ?>
+
+                <h3>Check the results of your search</h3>
+                <hr>
+                <table class="table table-striped" style="margin-top: 10px;">
+                    <caption style="caption-side: top; text-align: center;">
+                        <h5>Data received from <?php echo $_SERVER["REQUEST_METHOD"] ?></h5>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Place to visit</th>
+                            <th scope="col">Check In</th>
+                            <th scope="col">Check Out</th>
+                            <th scope="col">Number of people</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="color: gray;"><?php echo $city ?></th>
+                            <th style="color: gray;"><?php echo $trip_start ?></th>
+                            <th style="color: gray;"><?php echo $trip_end ?></th>
+                            <th style="color: gray;"><?php echo $num_people ?></th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -120,7 +120,7 @@ HTTP pedido, y no en el URL
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
-                                <input name="num_people" type="number" min=0 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
+                                <input name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
                             </div>
                             <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search"
                                 style="color: white;"></i>
