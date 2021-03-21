@@ -68,7 +68,7 @@
                 <!-- Server en PHP -->
                 <?php
 
-                //Function to determine correctness of the check in/out dates - USAR JavaScript posteriormente?¿
+                //Function to determine correctness of the check in/out dates - USAR JavaScript GETeriormente?¿
                 function check_dates($checkin, $checkout)
                 {
                     $date1 = strtotime($checkin);
@@ -80,18 +80,18 @@
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     //Recepción de datos
-                    $city = htmlspecialchars($_POST["city"]);
+                    $city = htmlspecialchars($_POST["city"]); //el metodo tiene en cuenta si le hemos introducido un tag html y no actua sobre el codigo fuente
                     $trip_start = $_POST["trip_start"];
                     $trip_end = $_POST["trip_end"];
                     $num_people = (int)$_POST["num_people"];
 
                     //Patrones que deben coincidir
-                    $city_pattern = "/^([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$/i";
+                    $city_pattern = "/^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/i"; // UNUSED because of names like ´s-Hertogenbosch. Using htmlspecialchars to prevent code injection
                     $date_pattern = "/^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/i";
                     $num_people_pattern = "/^([1-9]|[1-4]\d|50)$/i";
 
                     // Checking input values with regex
-                    if (!preg_match($city_pattern, $city) || !preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people) || !check_dates($trip_start, $trip_end)) {
+                    if (!preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people) || !check_dates($trip_start, $trip_end)) {
                         header("Location: 400.html");
                     }
                 } else {

@@ -1,0 +1,168 @@
+html {
+    position: relative;
+}
+
+body {
+    background-color: #d2d2d2;
+    margin-bottom: 75px;
+    background-image: url("../images/background.png");
+}
+
+.navbar {
+    background-color: #365e79;
+    text-align: center;
+}
+
+hr {
+    opacity: 30%;
+}
+
+.titlebox {
+    padding: 10px;
+    margin-left: 10%;
+}
+
+.textitem {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #00022e;
+    text-align: justify;
+}
+
+.textitemlittle {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #00022e;
+    text-align: justify;
+}
+
+.alerttext {
+    margin-left: 5%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.container-fluid.wrapper {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navbartextlight {
+    font-weight: lighter;
+    color: white;
+}
+
+.navbartext {
+    font-weight: normal;
+    color: white;
+}
+
+.helpicon {
+    width: 5%;
+    padding: 0px;
+}
+
+.title {
+    font-weight: lighter;
+    color: white;
+}
+
+.subtitle {
+    font-weight: lighter;
+    color: #FFFFFF;
+}
+
+.fixed-bottom {
+    padding: 20px;
+    position: absolute;
+    height: 70px;
+    background-color: #00022e;
+    color: white;
+    text-align: center;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+.author {
+    padding: 10px;
+    color: white;
+}
+
+.searchbox {
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #365e79;
+}
+
+.checked {
+    color: orange;
+}
+
+.box {
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+}
+
+.boxblue {
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #365e79;
+}
+
+.content {
+    text-align: center;
+    padding: 20px 10px 10px 10px;
+}
+
+.formwrapper {
+    text-align: center;
+    padding: 20px 10px 10px 20px;
+}
+
+.contenttitles {
+    color: #00022e;
+    font-weight: bold;
+}
+
+.contenttitleslight {
+    color: #00022e;
+    font-weight: lighter;
+}
+
+.multicolortext {
+    background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
