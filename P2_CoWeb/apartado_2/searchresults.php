@@ -64,7 +64,7 @@
     </div>
     <!-- Fin alert -->
 
-    <div class="container-fluid wrapper" style="padding-bottom: 10px; padding-left:400px; padding-right: 400px">
+    <div class="container-fluid wrapper" style="padding-bottom: 10px; padding-left:15%; padding-right: 15%">
         <div class="box">
             <div class="content">
                 <h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3>
@@ -125,7 +125,7 @@
                         $result = $db->query("SELECT * FROM cities WHERE name = $city_name")->fetch();
 
                         if (!empty($result)){
-                            echo '<div class="card" style="margin-left:400px; margin-right: 400px; margin-bottom: 20px">';
+                            echo '<div class="card" style="margin-left: 5%; margin-right:5%">';
                             echo '<ul class="list-group">';
                             echo '<li class="list-group-item active"><i class="fas fa-info-circle"></i> Information about: <strong>';
                             echo $city_name;
@@ -153,7 +153,7 @@
 
                         if ($result2->rowCount() > 0) {
                             foreach ($result2 as $row) {
-                                echo '<div class="card mb-3" style="margin-left: 300px; margin-right: 300px">';
+                                echo '<div class="card mb-3" style="margin-left: 5%; margin-right: 5%">';
                                     echo '<img src="'; echo $row['img']; echo '" style="height: 350px; object-fit: cover;" alt="Card image cap">';
                                     echo '<div class="card-body" style="text-align: left">';
                                         echo '<h3 class="contenttitleslight">'; echo $row['nombre']; echo ' on <strong>'; echo $row['ciudad']; echo '</strong>   <span class="badge badge-secondary" style="margin-left: 10px;">Not rated</span></h3>';
