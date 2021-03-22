@@ -20,9 +20,11 @@
     <nav class="navbar">
 
         <!-- envoltorio del titulo -->
-        <div class="titlebox" href=#>
-            <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
-            <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+        <div class="titlebox">
+            <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">
+                <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
+                <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+            </a>
         </div>
 
         <!-- botones del navbar -->
@@ -33,9 +35,9 @@
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <button type="button" class="btn btn-info"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
-                </button>
+                </a>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Third group">
                 <button type="button" class="btn btn-info"><i class="fas fa-sign-in-alt" style="color: white;"></i>
@@ -62,7 +64,7 @@
     </div>
     <!-- Fin alert -->
 
-    <div class="container-fluid wrapper" style="padding-bottom: 10px; padding-left:200px; padding-right: 200px">
+    <div class="container-fluid wrapper" style="padding-bottom: 10px; padding-left:400px; padding-right: 400px">
         <div class="box">
             <div class="content">
                 <h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3>
@@ -122,42 +124,60 @@
                         $city_name = $db->quote($city);
                         $result = $db->query("SELECT * FROM cities WHERE name = $city_name")->fetch();
 
-                        echo '<div class="card" style="margin-left:600px; margin-right: 600px; margin-bottom: 20px">';
-                        echo '<ul class="list-group">';
-                        echo '<li class="list-group-item active"><i class="fas fa-info-circle"></i> Information about: <strong>';
-                        echo $city_name;
-                        echo '</strong></li>';
-                        echo '<li class="list-group-item"><strong>Country: </strong>';
-                        echo $result['country_code'];
-                        echo '</li>';
-                        echo '<li class="list-group-item"><strong>District: </strong>';
-                        echo $result['district'];
-                        echo '</li>';
-                        echo '<li class="list-group-item"><strong>Population: </strong>';
-                        echo $result['population'];
-                        echo '</li>';
-                        echo '</ul>';
-                        echo '</div>';
-                        echo '<hr>';
+                        if (!empty($result)){
+                            echo '<div class="card" style="margin-left:400px; margin-right: 400px; margin-bottom: 20px">';
+                            echo '<ul class="list-group">';
+                            echo '<li class="list-group-item active"><i class="fas fa-info-circle"></i> Information about: <strong>';
+                            echo $city_name;
+                            echo '</strong></li>';
+                            echo '<li class="list-group-item"><strong>Country: </strong>';
+                            echo $result['country_code'];
+                            echo '</li>';
+                            echo '<li class="list-group-item"><strong>District: </strong>';
+                            echo $result['district'];
+                            echo '</li>';
+                            echo '<li class="list-group-item"><strong>Population: </strong>';
+                            echo $result['population'];
+                            echo '</li>';
+                            echo '</ul>';
+                            echo '</div>';
+                            echo '<hr>';
+                        }else{
+                            echo '<h3><i class="fas fa-times-circle" style="color: darkred"></i> No information for <strong>';
+                            echo $city;
+                            echo '</strong></h3>';
+                            echo '<hr>';
+                        }
 
                         $result2 = $db2->query("SELECT * FROM hoteles WHERE ciudad = $city_name");
-                        
-                        if (!empty($result2)) {
+
+                        if ($result2->rowCount() > 0) {
                             foreach ($result2 as $row) {
-                                echo '<div class="card mb-3" style="margin-left: 200px; margin-right: 200px">';
-                                    echo '<div style="text-align:center; padding-top:10px; padding-left:30px; padding-right: 30px">';
-                                        echo '<img src="'; echo $row['img']; echo '" style="width: 20%; height:auto;" alt="Card image cap">';
-                                    echo '</div>';
-                                    echo '<div class="card-body">';
-                                        echo '<h5 class="card-title">'; echo $row['nombre']; echo '</h5>';
-                                        echo '<p class="card-text">Hotel situado en una zona de '; echo $row['zona'];
-                                        echo '<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>';
+                                echo '<div class="card mb-3" style="margin-left: 300px; margin-right: 300px">';
+                                    echo '<img src="'; echo $row['img']; echo '" style="height: 350px; object-fit: cover;" alt="Card image cap">';
+                                    echo '<div class="card-body" style="text-align: left">';
+                                        echo '<h3 class="contenttitleslight">'; echo $row['nombre']; echo ' on <strong>'; echo $row['ciudad']; echo '</strong>   <span class="badge badge-secondary" style="margin-left: 10px;">Not rated</span></h3>';
+                                        echo '<h5>'; echo $row['pais']; echo '</h5>';
+                                        echo '<span class="fa fa-star"></span>';
+                                        echo '<span class="fa fa-star"></span>';
+                                        echo '<span class="fa fa-star"></span>';
+                                        echo '<span class="fa fa-star"></span>';
+                                        echo '<span class="fa fa-star"></span>';
+                                        echo '<hr>';
+                                        echo '<p class="card-text">Accommodation for '; echo $num_people; echo ' people  located in a '; echo $row['zona']; echo ' area. </p>';
+                                        if($row['piscina'] == 1)
+                                            echo '<p class="card-text" style="color: green">Swimming pool available   <i class="fas fa-swimmer" ></i></p>';
+                                        else
+                                            echo '<p class="card-text" style="color: darkred">Swimming pool not available   <i class="fas fa-times"></i></p>';
+                                        echo '<div style="text-align: right">';
+                                            echo '<a href="#" class="btn btn-primary">Show available rooms</a>';
+                                        echo '</div>';
                                     echo '</div>';
                                 echo '</div>';
                             }
                         } else {
-                            echo '<h3><i class="fas fa-times-circle" style="color: darkred"></i></i> No hotels registered on <strong>';
-                            echo $city;
+                            echo '<h3><i class="fas fa-times-circle" style="color: darkred"></i> No hotels registered on <strong>';
+                            echo $city_name;
                             echo '</strong></h3>';
                         }
                     } catch (PDOException $e) {
@@ -175,7 +195,7 @@
 
     <!-- Inicio footer -->
     <footer class="fixed-bottom ">
-        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 1.</h7>
+        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 2.</h7>
     </footer>
     <!-- Final footer -->
 

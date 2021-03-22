@@ -20,9 +20,11 @@
     <nav class="navbar">
 
         <!-- envoltorio del titulo -->
-        <div class="titlebox" href=#>
-            <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
-            <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+        <div class="titlebox">
+            <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">
+                <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
+                <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+            </a>
         </div>
 
         <!-- botones del navbar -->
@@ -33,9 +35,9 @@
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <button type="button" class="btn btn-info"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
-                </button>
+                </a>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Third group">
                 <button type="button" class="btn btn-info"><i class="fas fa-sign-in-alt" style="color: white;"></i>
@@ -75,7 +77,7 @@
                 <p class="divider-text" style="text-align: center;">
                     <span class="bg-light">OR</span>
                 </p>
-                <form action="http://localhost/COW/P2_CoWeb/apartado_2/confirmation.php" method=GET>
+                <form action="http://localhost/COW/P2_CoWeb/apartado_2/confirmation.php" method=POST>
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -113,7 +115,7 @@
 
     <!-- Inicio footer -->
     <footer class="fixed-bottom ">
-        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 1.</h7>
+        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 2.</h7>
     </footer>
     <!-- Final footer -->
 

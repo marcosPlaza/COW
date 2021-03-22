@@ -35,9 +35,9 @@
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <button type="button" class="btn btn-info"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
-                </button>
+                </a>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Third group">
                 <button type="button" class="btn btn-info"><i class="fas fa-sign-in-alt" style="color: white;"></i>
@@ -67,16 +67,16 @@
     <?php
     function check_password($p1, $p2)
     {
-        if (strcasecmp($p1, $p2) == 0) return false;
-        return true;
+        if (strcasecmp($p1, $p2) == 0) return true;
+        return false;
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Recepción de datos
-        $username = $_GET["username"];
-        $email = $_GET["email"];
-        $password1 = $_GET["password1"];
-        $password2 = $_GET["password2"];
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $password1 = $_POST["password1"];
+        $password2 = $_POST["password2"];
 
         // Checking input values with regex
         if (!check_password($password1, $password2)) {
@@ -92,42 +92,62 @@
             //start new connection
             $conn = new PDO("mysql:host=$servername; dbname=$dbname", $dbusername, $dbpassword);
 
-
             // set the PDO error mode to exception
             $conn->setAttribute(
                 PDO::ATTR_ERRMODE,
                 PDO::ERRMODE_EXCEPTION
             );
 
-            /*            $sql = "INSERT INTO students (id, name, email, password) VALUES ( '$username', '$email', '$password1')";
-            $conn->exec($sql);*/
-            $stmt = $conn->prepare("INSERT INTO students(id, name, email, password) VALUES(?,?,?,?);");
-            $last_id = $conn->lastInsertId();
-            $stmt->execute([$last_id+1, $username, $email, $password]);
+            $quoted_mail = $conn->quote($email);
 
+            // mail is supposed to be a unique field
+            $exists_mail = $conn->query("SELECT * FROM students WHERE email = $quoted_mail");
+
+            // Cambiar!!!
+            $new_id = $conn->query("SELECT * FROM students ORDER BY id DESC LIMIT 1")->fetch()['id'] + 1;
+
+            $conn->beginTransaction();
+
+            //$last_id = $conn->lastInsertId(); //==> Siempre devuelve 0!!!
+
+            $sql = "INSERT INTO students (id, name, email, password) VALUES ('$new_id', '$username', '$email', '$password1')";
+            $conn->exec($sql);
+
+            if ($exists_mail->rowCount() > 0) {
+                $conn->rollBack();
+                echo '<div class="container" style="padding-top: 30px; padding-bottom: 30px;">';
+                echo '<div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">';
+                echo '<div class="content" style="padding-bottom: 100px;">';
+                echo '<h4 class="card-title mt-3 text-center">Upss! You are already a member...   <i class="fas fa-times-circle" style="color: darkred"></i></h4>';
+                echo '<p><a href="#">Sign in</a>';
+                echo ' or ';
+                echo '<a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">get back to Poké-Booking homepage</a>.</p>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            } else {
+                $conn->commit();
+                echo '<div class="container" style="padding-top: 30px; padding-bottom: 30px;">';
+                echo '<div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">';
+                echo '<div class="content" style="padding-bottom: 100px;">';
+                echo '<h4 class="card-title mt-3 text-center">Congratulations! Your account has been created successfully <i class="fas fa-check-circle" style="color: green"></i></h4>';
+                echo '<a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">Back to Poké-Booking homepage</a>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }
     } else {
         header("Location: 405.html");
     }
-
     $conn = null;
     ?>
 
-    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
-        <div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">
-            <div class="content" style="padding-bottom: 100px;">
-                <h4 class="card-title mt-3 text-center">Congratulations! Your account has been created successfully <i class="fas fa-check-circle" style="color: green"></i></h4>
-                <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">Back to Poké-Booking homepage</a>
-            </div>
-        </div> <!-- card.// -->
-    </div>
-    <!--container end.//-->
-
     <!-- Inicio footer -->
     <footer class="fixed-bottom ">
-        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 1.</h7>
+        <h7 class="navbartextlight ">Marcos Plaza González. Computació Orientada al web. Pràctica 2, apartat 2.</h7>
     </footer>
     <!-- Final footer -->
 
