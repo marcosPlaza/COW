@@ -1,15 +1,9 @@
-<!-- GET no oculta los valores pasados por parametro -->
-<!-- POST si oculta los valores pasador por parametro en la URL -->
+<!-- GET : pide al servidor una pagina o datos.Si el pedido tiene parámetros, ellos se envían por medio del URL
+    como un string query
 
-<!-- Power Point -->
-<!--
-GET : pide al servidor una pagina o datos.Si el pedido tiene parámetros, ellos se envían por medio del URL
-como un string query
-
-POST : envía los datos a un web server y recupera la respuesta del servidor
-Si el pedido tiene parámetros, ellos se incluyen en el paquete
-HTTP pedido, y no en el URL
--->
+    POST : envía los datos a un web server y recupera la respuesta del servidor
+    Si el pedido tiene parámetros, ellos se incluyen en el paquete
+    HTTP pedido, y no en el URL -->
 
 <!-- Inicio html -->
 <!DOCTYPE html>
@@ -33,7 +27,7 @@ HTTP pedido, y no en el URL
     <script src="bootstrap-4.3.1_v2/js/popper.min.js"></script>
     <script src="bootstrap-4.3.1_v2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="css/style_apartado2.css" type="text/css">
+    <link rel="stylesheet" href="css/style_apartado1.css" type="text/css">
     <link rel="shortcut icon" href="images/pokeball.png">
     <!-- Utilizaremos nuestra propia hoja de estilo en cascada/css -->
 </head>
@@ -47,10 +41,11 @@ HTTP pedido, y no en el URL
     <nav class="navbar">
 
         <!-- envoltorio del titulo -->
-        <div class="titlebox" href=#>
-            <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img
-                        src="images/pokeball_small.png">king</b> Service</h1>
-            <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+        <div class="titlebox">
+            <a href="#">
+                <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
+                <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
+            </a>
         </div>
 
         <!-- botones del navbar -->
@@ -72,8 +67,7 @@ HTTP pedido, y no en el URL
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Third group">
                 <button type="button" class="btn"><i class="fab fa-github" style="color: white;"></i>
-                    <h7 class="navbartextlight"> <a href="https://github.com/marcosPlaza" target="_blank"
-                            style="color: white;">About me</a></h7>
+                    <h7 class="navbartextlight"> <a href="https://github.com/marcosPlaza" target="_blank" style="color: white;">About me</a></h7>
                 </button>
             </div>
         </div>
@@ -104,8 +98,8 @@ HTTP pedido, y no en el URL
                 <div class="searchbox">
                     <div class="formwrapper">
                         <!-- ATENTTION change path-->
-                        <form class="form-inline" action="http://localhost/COW/P2_CoWeb/apartado_1/servidor.php" method=POST>
-                            <!--POST más adequado para formularios-->
+                        <form class="form-inline" action="servidor.php" method=POST>
+                            <!--POST más adequado para formularios. Control del input especificando el tipo -->
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight">Place to visit</h7>
                                 <input name="city" type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
@@ -122,8 +116,7 @@ HTTP pedido, y no en el URL
                                 <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
                                 <input name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
                             </div>
-                            <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search"
-                                style="color: white;"></i>
+                            <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search" style="color: white;"></i>
                                 <h7 class="navbartext"> Search now</h7>
                             </button>
                         </form>
@@ -145,37 +138,37 @@ HTTP pedido, y no en el URL
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/johto/">
-                                <h5 class="contenttitleslight">Johto</h5>
+                                    <h5 class="contenttitleslight">Johto</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/hoenn/">
-                                <h5 class="contenttitleslight">Hoenn</h5>
+                                    <h5 class="contenttitleslight">Hoenn</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/sinnoh/">
-                                <h5 class="contenttitleslight">Sinnoh</h5>
+                                    <h5 class="contenttitleslight">Sinnoh</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/unova/">
-                                <h5 class="contenttitleslight">Unova</h5>
+                                    <h5 class="contenttitleslight">Unova</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/kalos/">
-                                <h5 class="contenttitleslight">Kalos</h5>
+                                    <h5 class="contenttitleslight">Kalos</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/alola/">
-                                <h5 class="contenttitleslight">Alola</h5>
+                                    <h5 class="contenttitleslight">Alola</h5>
                                 </a>
                             </dt>
                             <hr>
                             <dt><a href="https://www.serebii.net/pokearth/galar/">
-                                <h5 class="contenttitleslight">Galar</h5>
+                                    <h5 class="contenttitleslight">Galar</h5>
                                 </a>
                             </dt>
                         </dl>
@@ -249,8 +242,7 @@ HTTP pedido, y no en el URL
                             <div class="container">
                                 <form class="form-group" action="http://www.google.com/search">
                                     <input type="text" name="q" class="form-control" placeholder="Mine is bulbasaur..." style="margin-top: 20px;">
-                                    <button type="submit" class="btn btn-info" style="margin-top: 30px;"><i class="fas fa-search"
-                                        style="color: white;"></i>
+                                    <button type="submit" class="btn btn-info" style="margin-top: 30px;"><i class="fas fa-search" style="color: white;"></i>
                                         <h7 class="navbartext"> Search now</h7>
                                     </button>
                                 </form>

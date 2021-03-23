@@ -21,7 +21,7 @@
 
         <!-- envoltorio del titulo -->
         <div class="titlebox">
-            <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">
+            <a href="home.php">
                 <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
                 <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
             </a>
@@ -35,7 +35,7 @@
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
                 </a>
             </div>
@@ -96,7 +96,8 @@
 
                     // Checking input values with regex
                     if (!preg_match($date_pattern, $trip_start) || !preg_match($date_pattern, $trip_end) || !preg_match($num_people_pattern, $num_people) || !check_dates($trip_start, $trip_end)) {
-                        header("Location: 400.html");
+                        header("Location: 400.php");
+                        exit("400 Bad Request");
                     }
 
                     $servername = "localhost";
@@ -186,7 +187,8 @@
                     $db = null;
                     $db2 = null;
                 } else {
-                    header("Location: 405.html");
+                    header("Location: 405.php");
+                    exit("405 Method Not Allowed");
                 }
                 ?>
             </div>

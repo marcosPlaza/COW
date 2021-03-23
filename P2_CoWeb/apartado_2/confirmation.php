@@ -21,7 +21,7 @@
 
         <!-- envoltorio del titulo -->
         <div class="titlebox">
-            <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">
+            <a href="home.php">
                 <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
                 <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
             </a>
@@ -35,7 +35,7 @@
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
                 </a>
             </div>
@@ -67,20 +67,23 @@
     <?php
     function check_password($p1, $p2)
     {
-        if (strcasecmp($p1, $p2) == 0) return true;
+        if (strcmp($p1, $p2) == 0) return true;
         return false;
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Recepción de datos
-        $username = $_POST["username"];
+        $username = htmlspecialchars($_POST["username"]);
         $email = $_POST["email"];
         $password1 = $_POST["password1"];
         $password2 = $_POST["password2"];
 
-        // Checking input values with regex
-        if (!check_password($password1, $password2)) {
-            header("Location: 400.html");
+        $mail_pattern = "/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i";
+
+        // We need to check input values with regex
+        if (!preg_match($mail_pattern, $email) || !check_password($password1, $password2)) {
+            header("Location: 400.php");
+            exit("400 Bad Request");
         }
 
         $servername = "localhost";
@@ -98,19 +101,23 @@
                 PDO::ERRMODE_EXCEPTION
             );
 
+            // Solucion 2. Consiste en poner el id de la tabla simpsons>students en autoincrementable
+            // $sql1 = "ALTER TABLE students MODIFY id INT AUTO_INCREMENT;";
+
+            // $conn->exec($sql1);
+
             $quoted_mail = $conn->quote($email);
 
             // mail is supposed to be a unique field
             $exists_mail = $conn->query("SELECT * FROM students WHERE email = $quoted_mail");
 
-            // Cambiar!!!
+            // Solucion 1 - Cambiar!!! => Hecho 
             $new_id = $conn->query("SELECT * FROM students ORDER BY id DESC LIMIT 1")->fetch()['id'] + 1;
 
             $conn->beginTransaction();
 
-            //$last_id = $conn->lastInsertId(); //==> Siempre devuelve 0!!!
-
             $sql = "INSERT INTO students (id, name, email, password) VALUES ('$new_id', '$username', '$email', '$password1')";
+
             $conn->exec($sql);
 
             if ($exists_mail->rowCount() > 0) {
@@ -121,7 +128,7 @@
                 echo '<h4 class="card-title mt-3 text-center">Upss! You are already a member...   <i class="fas fa-times-circle" style="color: darkred"></i></h4>';
                 echo '<p><a href="#">Sign in</a>';
                 echo ' or ';
-                echo '<a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">get back to Poké-Booking homepage</a>.</p>';
+                echo '<a href="home.php">get back to Poké-Booking homepage</a>.</p>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
@@ -131,7 +138,7 @@
                 echo '<div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">';
                 echo '<div class="content" style="padding-bottom: 100px;">';
                 echo '<h4 class="card-title mt-3 text-center">Congratulations! Your account has been created successfully <i class="fas fa-check-circle" style="color: green"></i></h4>';
-                echo '<a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">Back to Poké-Booking homepage</a>';
+                echo '<a href="home.php">Back to Poké-Booking homepage</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
@@ -140,7 +147,8 @@
             echo $sql . "<br>" . $e->getMessage();
         }
     } else {
-        header("Location: 405.html");
+        header("Location: 405.php");
+        exit("405 Method Not Allowed");
     }
     $conn = null;
     ?>

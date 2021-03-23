@@ -1,15 +1,9 @@
-<!-- GET no oculta los valores pasados por parametro -->
-<!-- POST si oculta los valores pasador por parametro en la URL -->
+<!-- GET : pide al servidor una pagina o datos.Si el pedido tiene parámetros, ellos se envían por medio del URL
+    como un string query
 
-<!-- Power Point -->
-<!--
-GET : pide al servidor una pagina o datos.Si el pedido tiene parámetros, ellos se envían por medio del URL
-como un string query
-
-POST : envía los datos a un web server y recupera la respuesta del servidor
-Si el pedido tiene parámetros, ellos se incluyen en el paquete
-HTTP pedido, y no en el URL
--->
+    POST : envía los datos a un web server y recupera la respuesta del servidor
+    Si el pedido tiene parámetros, ellos se incluyen en el paquete
+    HTTP pedido, y no en el URL -->
 
 <!-- Inicio html -->
 <!DOCTYPE html>
@@ -48,7 +42,7 @@ HTTP pedido, y no en el URL
 
         <!-- envoltorio del titulo -->
         <div class="titlebox">
-            <a href="http://localhost/COW/P2_CoWeb/apartado_2/home.php">
+            <a href="#">
                 <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
                 <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
             </a>
@@ -62,7 +56,7 @@ HTTP pedido, y no en el URL
                 </button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <a type="button" class="btn btn-info" href="http://localhost/COW/P2_CoWeb/apartado_2/signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
+                <a type="button" class="btn btn-info" href="signup.php"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
                 </a>
             </div>
@@ -104,7 +98,7 @@ HTTP pedido, y no en el URL
                 <div class="searchbox">
                     <div class="formwrapper">
                         <!-- ATENTTION change path-->
-                        <form class="form-inline" action="http://localhost/COW/P2_CoWeb/apartado_2/searchresults.php" method=POST>
+                        <form class="form-inline" action="searchresults.php" method=POST>
                             <!--POST más adequado para formularios-->
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight">Place to visit</h7>
