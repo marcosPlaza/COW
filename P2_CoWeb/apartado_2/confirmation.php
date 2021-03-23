@@ -86,6 +86,9 @@
             exit("400 Bad Request");
         }
 
+        // hasheamos la contraseña recibida para que no este almacenada en claro en la base de datos
+        // $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
+
         $servername = "localhost";
         $dbusername = "root";
         $dbpassword = "";
