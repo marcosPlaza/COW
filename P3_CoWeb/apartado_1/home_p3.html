@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- codificacion de caracteres. Importante para prevenir UTF-7 XSS Cheat Sheet (vulnerabilidad) -->
+    <!-- https://cybmeta.com/meta-charset-como-y-por-que-utilizarlo-siempre -->
+    <title>The Poké-Booking Service | Hey trainer, where do you wanna go?</title>
+    <!-- Mi proyecto se basa en una web para reservar hotel en las principales ciudades de la region de Kanto (Region ficticia de la franquicia de videojuegos Pokemon) -->
+    <link rel="stylesheet" href="bootstrap-4.3.1_v2/css/bootstrap.min.css" type="text/css">
+    <link href="fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet">
+
+    <!-- Revisar -->
+    <script src="bootstrap-4.3.1_v2/js/jquery.min.js"></script>
+    <script src="bootstrap-4.3.1_v2/js/popper.min.js"></script>
+    <script src="bootstrap-4.3.1_v2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style_apartado2.css" type="text/css">
+    <link rel="shortcut icon" href="images/pokeball.png">
+    <!-- Utilizaremos nuestra propia hoja de estilo en cascada/css -->
+</head>
+
+<body>
+    <div class="searchbox">
+        <div class="formwrapper">
+            <!-- ATENTTION change path-->
+            <form class="form-inline" action="searchresults.php" method=POST>
+                <!--POST más adequado para formularios-->
+                <div class="form-group mb-2">
+                    <h7 class="navbartextlight">Place to visit</h7>
+                    <input name="city" type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
+                </div>
+                <div class="form-group mb-2">
+                    <h7 class="navbartextlight" style="margin-left: 33px;">Check In-Out</h7>
+                    <input name="trip_start" maxlenght="10" type="date" size="17" class="form-control" id="start" value="2021-01-01" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                </div>
+                <div class="form-group mb-2">
+                    <h7 class="navbartext" style="margin-left: 10px;">→</h7>
+                    <input name="trip_end" maxlength="10" type="date" size="17" class="form-control" id="end" value="2021-01-02" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                </div>
+                <div class="form-group mb-2">
+                    <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
+                    <input name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
+                </div>
+                <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search" style="color: white;"></i>
+                    <h7 class="navbartext"> Search now</h7>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
