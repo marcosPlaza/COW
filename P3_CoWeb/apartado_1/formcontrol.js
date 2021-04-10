@@ -1,21 +1,9 @@
-// el evento onload se ejecuta una vez el html se ha cargado completamente
-/*window.onload = function() { // Maybe we can name a function setup
+document.observe("dom:loaded", checkSearchBoxForm);
+
+// Information extracted from https://getbootstrap.com/docs/5.0/forms/validation/
+function checkSearchBoxForm() {
     var form = $("searchbox");
-    form.onsubmit = checkInputData;
-}*/
 
-// Alternativa a la funcion de arriba a continuación
-document.observe("dom:loaded", function() {
-    $("searchbox").observe("change", checkInputData);
-    /*$("cityfield").observe("change", checkCity);
-    $("checkinfield").observe("change", checkCheckIn);
-    $("checkoutfield").observe("change", checkCheckOut);
-    $("numpeoplefield").observe("change", checkNumPeople);*/
-});
-
-// Funcion para revisar que los campos sean correctos
-// check this link https://getbootstrap.com/docs/5.0/forms/validation/
-function checkInputData(event) {
     var city = $("cityfield");
     var checkin = $("checkinfield");
     var checkout = $("checkoutfield");
@@ -25,84 +13,49 @@ function checkInputData(event) {
     let date_pattern = /^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
     let numpeople_pattern = /^([1-9]|[1-4]\d|50)$/;
 
-    if (!city_pattern.match($F(city))) {
-        event.preventDefault();
-        city.style.borderColor = "#FF0000";
-        city.style.boxShadow = "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
-        return false;
-    } else {
-        city.style.borderColor = "rgba(0, 0, 0, 0)";
-        city.style.boxShadow = "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
-    }
+    let citytuple = [city, city_pattern];
+    let checkintuple = [checkin, date_pattern];
+    let checkouttuple = [checkout, date_pattern];
+    let numpeopletuple = [numpeople, numpeople_pattern];
 
-    if (!date_pattern.match($F(checkin))) {
-        event.preventDefault();
-        checkin.style.borderColor = "#FF0000";
-        checkin.style.boxShadow = "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
-        return false;
-    } else {
-        checkin.style.borderColor = "rgba(0, 0, 0, 0)";
-    }
+    let checkValues_array = [citytuple, checkintuple, checkouttuple, numpeopletuple];
 
-    if (!date_pattern.match($F(checkout))) {
-        event.preventDefault();
-        checkout.style.borderColor = "#FF0000";
-        checkout.style.boxShadow = "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
-        return false;
-    } else {
-        checkout.style.borderColor = "rgba(0, 0, 0, 0)";
-    }
+    form.observe("submit", function(event) {
+        var was_invalid = false;
 
-    if (!numpeople_pattern.match($F(numpeople))) {
-        event.preventDefault();
-        numpeople.style.borderColor = "#FF0000";
-        numpeople.style.boxShadow = "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
-        return false;
-    } else {
-        numpeople.style.borderColor = "rgba(0, 0, 0, 0)";
-    }
+        // REGEX
+        checkValues_array.forEach(element => {
+            if (!element[1].match($F(element[0]))) {
+                element[0].setCustomValidity("Incorrect input was introduced!");
+
+                if (!was_invalid) {
+                    was_invalid = true;
+                }
+            } else {
+                element[0].setCustomValidity("");
+            }
+        });
+
+        // DATES COMPROBATION
+        checkin_date = new Date($F(checkin));
+        checkout_date = new Date($F(checkout));
+
+        if (checkin_date > checkout_date) {
+            checkin.setCustomValidity("This date is incorrect!");
+
+            if (!was_invalid) {
+                was_invalid = true;
+            }
+        } else {
+
+        }
+
+        form.classList.add('was-validated');
+
+        if (was_invalid) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+    });
 }
-
-/*function checkCity(event) {
-    var city = $("cityfield");
-    let city_pattern = /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
-
-    if (!city_pattern.match($F(city))) {
-        event.preventDefault();
-        // change color
-        return false;
-    }
-}
-
-function checkCheckIn(event) {
-    var checkin = $("checkinfield");
-    let date_pattern = /^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
-
-    if (!date_pattern.match($F(checkin))) {
-        event.preventDefault();
-        //change color
-        return false;
-    }
-}
-
-function checkCheckOut(event) {
-    var checkout = $("checkoutfield");
-    let date_pattern = /^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
-
-    if (!city_pattern.match($F(city))) {
-        event.preventDefault();
-        //
-        return false;
-    }
-}
-
-function checkNumPeople(event) {
-    var numpeople = $("numpeoplefield");
-    let numpeople_pattern = /^([1-9]|[1-4]\d|50)$/;
-
-    if (!city_pattern.match($F(city))) {
-        event.preventDefault();
-        city.style.borderColor = "red";
-        return false;
-    }
-}*/

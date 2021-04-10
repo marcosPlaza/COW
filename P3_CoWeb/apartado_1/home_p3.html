@@ -22,22 +22,22 @@
 <body>
     <div class="searchbox">
         <div class="formwrapper">
-            <form id="searchbox" class="form-inline" action="#" method=#>
+            <form id="searchbox" class="form-inline needs-validation" novalidate action="#" method=#>
                 <div class="form-group mb-2">
                     <h7 class="navbartextlight">Place to visit</h7>
-                    <input id="cityfield" name="city" type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
+                    <input id="cityfield" name="city" type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here..." required>
                 </div>
                 <div class="form-group mb-2">
                     <h7 class="navbartextlight" style="margin-left: 33px;">Check In-Out</h7>
-                    <input id="checkinfield" name="trip_start" maxlenght="10" type="date" size="17" class="form-control" id="start" value="2021-01-01" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                    <input id="checkinfield" name="trip_start" maxlenght="10" type="date" size="17" class="form-control" id="start" value="2021-01-01" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;" required>
                 </div>
                 <div class="form-group mb-2">
                     <h7 class="navbartext" style="margin-left: 10px;">→</h7>
-                    <input id="checkoutfield" name="trip_end" maxlength="10" type="date" size="17" class="form-control" id="end" value="2021-01-02" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                    <input id="checkoutfield" name="trip_end" maxlength="10" type="date" size="17" class="form-control" id="end" value="2021-01-02" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;" required>
                 </div>
                 <div class="form-group mb-2">
                     <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
-                    <input id="numpeoplefield" name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
+                    <input id="numpeoplefield" name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;" required>
                 </div>
                 <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search" style="color: white;"></i>
                     <h7 id="searchbtn" class="navbartext"> Search now</h7>
