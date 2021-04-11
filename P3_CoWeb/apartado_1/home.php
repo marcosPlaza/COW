@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="css/style_apartado2.css" type="text/css">
     <link rel="shortcut icon" href="images/pokeball.png">
     <!-- Utilizaremos nuestra propia hoja de estilo en cascada/css -->
+
+    <script src="scriptaculous-js-1.9.0/lib/prototype.js" type="text/javascript"></script>
+    <script src="scriptaculous-js-1.9.0/src/scriptaculous.js" type="text/javascript"></script>
+    <script src="formcontrol.js" type="text/javascript"></script>
 </head>
 <!-- Final head -->
 
@@ -97,27 +101,25 @@
                 </div>
                 <div class="searchbox">
                     <div class="formwrapper">
-                        <!-- ATENTTION change path-->
-                        <form class="form-inline" action="searchresults.php" method=POST>
-                            <!--POST más adequado para formularios-->
+                        <form id="searchbox" class="form-inline needs-validation" novalidate action="#" method=#>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight">Place to visit</h7>
-                                <input name="city" type="text" size="23" style="margin-left: 10px;" class="form-control" placeholder="City name here...">
+                                <input id="cityfield" name="city" type="text" size="18" style="margin-left: 10px;" class="form-control" placeholder="City name here..." oninvalid="this.setCustomValidity('Please enter a valid Name')" required>
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight" style="margin-left: 33px;">Check In-Out</h7>
-                                <input name="trip_start" maxlenght="10" type="date" size="17" class="form-control" id="start" value="2021-01-01" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                                <input id="checkinfield" name="trip_start" maxlenght="10" type="date" size="14" class="form-control" id="start" value="2021-01-01" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;" required>
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartext" style="margin-left: 10px;">→</h7>
-                                <input name="trip_end" maxlength="10" type="date" size="17" class="form-control" id="end" value="2021-01-02" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;">
+                                <input id="checkoutfield" name="trip_end" maxlength="10" type="date" size="14" class="form-control" id="end" value="2021-01-02" min="2021-01-01" max="2050-12-31" style="margin-left: 10px;" required>
                             </div>
                             <div class="form-group mb-2">
                                 <h7 class="navbartextlight" style="margin-left: 33px; margin-right: 10px;">People?</h7>
-                                <input name="num_people" type="number" min=1 max=50 class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;">
+                                <input id="numpeoplefield" name="num_people" type="text" class="form-control" placeholder="2" style="margin-right: 20px; width: 100px;" required>
                             </div>
                             <button type="submit" class="btn btn-info mb-2" style="margin-left: 50px;"><i class="fas fa-search" style="color: white;"></i>
-                                <h7 class="navbartext"> Search now</h7>
+                                <h7 id="searchbtn" class="navbartext"> Search now</h7>
                             </button>
                         </form>
                     </div>
