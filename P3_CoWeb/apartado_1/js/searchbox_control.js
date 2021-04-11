@@ -93,6 +93,7 @@ document.observe("dom:loaded", function() {
     });
 
     form.observe("submit", function(event) {
+        alert("Valid form");
         /*is_valid = true;
 
         $A(form).forEach(element => {
@@ -120,6 +121,7 @@ document.observe("dom:loaded", function() {
         } else {
             alert("BIEN");
         }*/
+
     });
 });
 
