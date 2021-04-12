@@ -29,6 +29,7 @@ document.observe("dom:loaded", function() {
                     else
                         element.classList.add('is-valid');
 
+                    // Ajax Autocomplete
                     if (index === 0) {
                         var xmlhttp = new XMLHttpRequest(); // simplified for clarity
 
