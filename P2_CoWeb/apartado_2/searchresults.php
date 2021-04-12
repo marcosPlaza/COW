@@ -125,6 +125,8 @@
                         $city_name = $db->quote($city);
                         $result = $db->query("SELECT * FROM cities WHERE name = $city_name")->fetch();
 
+                        var_dump($result);
+
                         if (!empty($result)){
                             echo '<div class="card" style="margin-left: 5%; margin-right:5%">';
                             echo '<ul class="list-group">';

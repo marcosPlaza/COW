@@ -28,6 +28,27 @@ document.observe("dom:loaded", function() {
                         element.classList.replace('is-invalid', 'is-valid');
                     else
                         element.classList.add('is-valid');
+
+                    if (index === 0) {
+                        var xmlhttp = new XMLHttpRequest(); // simplified for clarity
+
+                        xmlhttp.open("POST", "gethint.php?q=" + $F(element), true); // sending as POST
+                        xmlhttp.send();
+
+                        xmlhttp.onreadystatechange = function() { //Call a function when the state changes.
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // complete and no errors
+                                alert(xmlhttp.responseText);
+                                $("autoCompleteMenu").innerHTML += xmlhttp.responseText;
+                            }
+                        };
+
+                        /*new Ajax.Autocompleter(
+                            element,
+                            'autoCompleteMenu', 'gethint.php', {
+                                ignoreCase: true
+                            }
+                        );*/
+                    }
                 }
 
                 if ($F(element) === "") {
