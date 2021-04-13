@@ -35,7 +35,9 @@ document.observe("dom:loaded", function() {
 
                         xmlhttp.onreadystatechange = function() { //Call a function when the state changes.
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // complete and no errors
+                                // DEVUELVE LOS VALORES A LA PRIMERA DE MANERA CORRECTA
                                 $("cityfield").innerHTML += xmlhttp.responseText;
+                                // POR OTRO LADO NO SE ACTUALIZAN LOS VALORES HASTA INTRODUCIDA LA SEGUNDA LETRA
                             }
                         };
 
@@ -95,6 +97,7 @@ document.observe("dom:loaded", function() {
 
         // A partir de aqui debemos recuperar los hoteles 
 
+
         // Primero debemos hacer una request
         new Ajax.Request("gethotels.php", {
             method: "POST",
@@ -104,10 +107,12 @@ document.observe("dom:loaded", function() {
             onException: exceptionResponse
         });
 
-        /**
-         * A continuacion debemos mirar que hacer en caso de exito, fallo o excepcion.
-         * Para ello tenemos las tres funciones enlazadas a cada evento segun la respuesta del objeto Ajax
-         */
+        event.preventDefault();
+
+        // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
+        /*event.preventDefault();
+        event.stopPropagation();
+        return false;*/
     });
 });
 
@@ -166,9 +171,11 @@ function datesComprobation() {
     }
 }
 
+
 function successfulResponse(ajax) {
-    //alert(ajax.responseText);
-    $("hotelsfound").innerHTML = ajax.responseText;
+    // EN LLAMAR ESTA FUNCION LA PAGINA PARECE RECARGARSE RAPIDAMENTE Y NO LLEGAMOS A VER LOS RESULTADOS
+    if (ajax.status === 200)
+        $("hotelsfound").innerHTML = ajax.responseText;
 }
 
 function failedResponse(ajax) {

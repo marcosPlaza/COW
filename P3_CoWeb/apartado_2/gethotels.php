@@ -2,9 +2,6 @@
 $city = $_POST["city"]; // It works
 $num_people = $_POST["numpeople"];
 
-var_dump($city);
-var_dump($num_people);
-
 $servername = "localhost";
 $dbusername = "root";
 $dbpassword = "";
@@ -24,8 +21,10 @@ try {
 
     $result = $db->query("SELECT * FROM hoteles WHERE ciudad = $city_name");
 
+    echo '<h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3>';
     if ($result->rowCount() > 0) {
         foreach ($result as $row) {
+            echo '<hr>';
             echo '<div class="card mb-3" style="margin-left: 5%; margin-right: 5%">';
             echo '<img src="';
             echo $row['img'];
@@ -61,6 +60,7 @@ try {
             echo '</div>';
         }
     } else {
+        echo '<hr>';
         echo '<h3><i class="fas fa-times-circle" style="color: darkred"></i> No hotels registered on <strong>';
         echo $city_name;
         echo '</strong></h3>';
