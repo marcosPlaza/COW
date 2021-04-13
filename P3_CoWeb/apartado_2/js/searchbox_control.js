@@ -14,7 +14,7 @@ document.observe("dom:loaded", function() {
 
     $A(form).forEach((element, index) => {
         if (element.tagName === 'INPUT') {
-            element.observe("keyup", function() {
+            element.observe("keyup", function() { // change supports firefox datepicker but no chrome datepicker
                 // CHECK REGEX
                 if (!pattern_array[index].match($F(element))) {
                     element.setCustomValidity("Incorrect input was introduced!");
@@ -29,7 +29,7 @@ document.observe("dom:loaded", function() {
                     else
                         element.classList.add('is-valid');
 
-                    // Ajax Autocomplete
+                    // Ajax Autocomplete only for city input
                     if (index === 0) {
                         var xmlhttp = new XMLHttpRequest(); // simplified for clarity
 
@@ -52,74 +52,31 @@ document.observe("dom:loaded", function() {
                         element.classList.remove('is-invalid');
                     }
                 }
-
-                // DATES COMPROBATION
-                if (index === 1 || index === 2) {
-                    checkin = $("checkinfield");
-                    checkout = $("checkoutfield");
-
-                    checkin_date = new Date($F(checkin)); // temporal dates
-                    checkout_date = new Date($F(checkout));
-
-                    if (isValidDate(checkin_date) && isValidDate(checkout_date)) {
-                        if (checkin_date > checkout_date) {
-                            if (checkin.classList.contains('is-valid'))
-                                checkin.classList.replace('is-valid', 'is-invalid');
-                            else
-                                checkin.classList.add('is-invalid');
-
-                            if (checkout.classList.contains('is-valid'))
-                                checkout.classList.replace('is-valid', 'is-invalid');
-                            else
-                                checkout.classList.add('is-invalid');
-
-                            checkin.setCustomValidity("Invalid check-in");
-                            checkout.setCustomValidity("Invalid check-out");
-                        } else {
-                            if (checkin.classList.contains('is-invalid'))
-                                checkin.classList.replace('is-invalid', 'is-valid');
-                            else
-                                checkin.classList.add('is-valid');
-
-                            if (checkout.classList.contains('is-invalid'))
-                                checkout.classList.replace('is-invalid', 'is-valid');
-                            else
-                                checkout.classList.add('is-valid');
-
-                            checkin.setCustomValidity("");
-                            checkout.setCustomValidity("");
-                        }
-                    } else {
-                        if (!isValidDate(checkin_date)) {
-                            if (element.classList.contains('is-valid')) {
-                                checkin.classList.replace('is-valid', 'is-invalid');
-                            }
-                        }
-                        if (!isValidDate(checkin_date)) {
-                            if (element.classList.contains('is-valid')) {
-                                checkin.classList.replace('is-valid', 'is-invalid');
-                            }
-                        }
-                    }
-                }
             });
+        }
+
+        if (index === 1 || index === 2) {
+            element.observe("change", datesComprobation);
         }
     });
 
+    // EXTRA COMPROBATION
     form.observe("submit", function(event) {
-        alert("Valid form");
+        // CODIGO INUTIL
         /*is_valid = true;
 
         $A(form).forEach(element => {
             if (element.tagName === 'INPUT') {
                 if ($F(element) == "") {
                     element.classList.add('is-invalid');
+
                     // hint rellena campo
                     element.setCustomValidity("Fill this field!");
                 }
 
                 if (element.classList.contains('is-invalid')) {
                     is_valid = false;
+
                     // hint revisa el campo
                     element.setCustomValidity("Incorrect input was introduced!");
                 }
@@ -128,7 +85,7 @@ document.observe("dom:loaded", function() {
 
         // STOP THE SUBMISSION AND ALSO PARENT'S EVENTS
         if (!is_valid) {
-            alert("MAL");
+            alert("Check out the values submitted!");
             event.preventDefault();
             event.stopPropagation();
             return false;
@@ -136,6 +93,21 @@ document.observe("dom:loaded", function() {
             alert("BIEN");
         }*/
 
+        // A partir de aqui debemos recuperar los hoteles 
+
+        // Primero debemos hacer una request
+        new Ajax.Request("gethotels.php", {
+            method: "POST",
+            parameters: { city: $F($("cityfield")), checkin: $F($("checkinfield")), checkout: $F($("checkoutfield")), numpeople: $F($("numpeoplefield")) },
+            onSuccess: successfulResponse,
+            onFailure: failedResponse,
+            onException: exceptionResponse
+        });
+
+        /**
+         * A continuacion debemos mirar que hacer en caso de exito, fallo o excepcion.
+         * Para ello tenemos las tres funciones enlazadas a cada evento segun la respuesta del objeto Ajax
+         */
     });
 });
 
@@ -143,3 +115,90 @@ document.observe("dom:loaded", function() {
 function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
 }
+
+// Function to check if checkin and checkout are valid
+function datesComprobation() {
+    checkin = $("checkinfield");
+    checkout = $("checkoutfield");
+
+    checkin_date = new Date($F(checkin)); // temporal dates
+    checkout_date = new Date($F(checkout));
+
+    if (isValidDate(checkin_date) && isValidDate(checkout_date)) {
+        if (checkin_date > checkout_date) {
+            if (checkin.classList.contains('is-valid'))
+                checkin.classList.replace('is-valid', 'is-invalid');
+            else
+                checkin.classList.add('is-invalid');
+
+            if (checkout.classList.contains('is-valid'))
+                checkout.classList.replace('is-valid', 'is-invalid');
+            else
+                checkout.classList.add('is-invalid');
+
+            checkin.setCustomValidity("Invalid check-in");
+            checkout.setCustomValidity("Invalid check-out");
+        } else {
+            if (checkin.classList.contains('is-invalid'))
+                checkin.classList.replace('is-invalid', 'is-valid');
+            else
+                checkin.classList.add('is-valid');
+
+            if (checkout.classList.contains('is-invalid'))
+                checkout.classList.replace('is-invalid', 'is-valid');
+            else
+                checkout.classList.add('is-valid');
+
+            checkin.setCustomValidity("");
+            checkout.setCustomValidity("");
+        }
+    } else {
+        if (!isValidDate(checkin_date)) {
+            if (checkin.classList.contains('is-valid')) {
+                checkin.classList.replace('is-valid', 'is-invalid');
+            }
+        }
+        if (!isValidDate(checkout_date)) {
+            if (checkout.classList.contains('is-valid')) {
+                checkout.classList.replace('is-valid', 'is-invalid');
+            }
+        }
+    }
+}
+
+function successfulResponse(ajax) {
+    //alert(ajax.responseText);
+    $("hotelsfound").innerHTML = ajax.responseText;
+}
+
+function failedResponse(ajax) {
+    alert("Failed response");
+}
+
+function exceptionResponse(ajax, exception) {
+    alert("Exception response");
+}
+
+/**
+ * ===================
+ *      SUMMARY
+ * ===================
+ * 
+ * FIREFOX
+ * Autocomplete - Only with the first character introduced
+ * Date picker - Works fine
+ * 
+ * SAFARI
+ * Autocomplete - Works fine
+ * Date picker - Works fine
+ * 
+ * CHROME
+ * Autocomplete - Works fine
+ * Date picker - Works fine
+ * 
+ *  ===================
+ *      QUESTIONS
+ *  ===================
+ * ¿Debe funcionar con todos los navegadores obligatoriamente?
+ * ¿Existe alguna forma más eficiente de cargar una única vez la base de datos y hacer la query (solo necesito el nombre de todas las ciudades)?
+ */
