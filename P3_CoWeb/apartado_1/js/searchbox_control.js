@@ -4,6 +4,41 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 document.observe("dom:loaded", function() {
+    var pkmn_cities = ["Pallet Town",
+        "Viridian City",
+        "Pewter City",
+        "Cerulean City",
+        "Vermilion City",
+        "Lavender Town",
+        "Celadon City",
+        "Fuchsia City",
+        "Saffron City",
+        "Cinnabar Island",
+        "Cerulean Cave",
+        "Diglett's Cave",
+        "Indigo Plateau",
+        "Mt. Moon",
+        "Pokémon Mansion",
+        "Pokémon Tower",
+        "Power Plant",
+        "Rock Tunnel",
+        "Celadon Game Corner",
+        "Safari Zone",
+        "Seafoam Islands",
+        "Silph Co.",
+        "Victory Road",
+        "Viridian Forest",
+        "Pokémon Stadium"
+    ]
+
+    Sortable.create('elements', {
+        tag: 'dt',
+        onUpdate: function() {
+            if (Sortable.sequence('elements').join('') == '12345678')
+                confetti.start(5000);
+        }
+    });
+
     var form = $("searchbox");
 
     let city_pattern = /^('|([0-9]{1,2}))?([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
@@ -38,6 +73,9 @@ document.observe("dom:loaded", function() {
                         element.classList.remove('is-invalid');
                     }
                 }
+
+                if (index === 0)
+                    new Autocompleter.Local($("cityfield"), $("city_list"), pkmn_cities, {});
 
                 // DATES COMPROBATION
                 if (index === 1 || index === 2) {
@@ -93,39 +131,12 @@ document.observe("dom:loaded", function() {
     });
 
     form.observe("submit", function(event) {
-        alert("Valid form");
-        /*is_valid = true;
-
-        $A(form).forEach(element => {
-            if (element.tagName === 'INPUT') {
-                if ($F(element) == "") {
-                    element.classList.add('is-invalid');
-                    // hint rellena campo
-                    element.setCustomValidity("Fill this field!");
-                }
-
-                if (element.classList.contains('is-invalid')) {
-                    is_valid = false;
-                    // hint revisa el campo
-                    element.setCustomValidity("Incorrect input was introduced!");
-                }
-            }
-        });
-
-        // STOP THE SUBMISSION AND ALSO PARENT'S EVENTS
-        if (!is_valid) {
-            alert("MAL");
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-        } else {
-            alert("BIEN");
-        }*/
-
+        Effect.SlideDown($("hotelsholder"));
+        event.preventDefault();
     });
 });
 
-// Function to check valid date
+// Function to check if it's valid date
 function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
 }

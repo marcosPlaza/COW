@@ -10,7 +10,7 @@ document.observe("dom:loaded", function() {
     let date_pattern = /^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][1-9]|[1-2][0-9]|(3)[0-1])$/;
     let numpeople_pattern = /^([1-9]|[1-4]\d|50)$/;
 
-    let pattern_array = [city_pattern, date_pattern, date_pattern, numpeople_pattern]
+    let pattern_array = [city_pattern, date_pattern, date_pattern, numpeople_pattern];
 
     $A(form).forEach((element, index) => {
         if (element.tagName === 'INPUT') {
@@ -29,14 +29,14 @@ document.observe("dom:loaded", function() {
                     else
                         element.classList.add('is-valid');
 
-                    // Ajax Autocomplete only for city input
                     if (index === 0) {
+                        // Ajax Autocomplete only for city input
                         var xmlhttp = new XMLHttpRequest(); // simplified for clarity
 
                         xmlhttp.onreadystatechange = function() { //Call a function when the state changes.
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // complete and no errors
                                 // DEVUELVE LOS VALORES A LA PRIMERA DE MANERA CORRECTA
-                                $("cityfield").innerHTML += xmlhttp.responseText;
+                                updateAutocomplete(this);
                                 // POR OTRO LADO NO SE ACTUALIZAN LOS VALORES HASTA INTRODUCIDA LA SEGUNDA LETRA
                             }
                         };
@@ -102,12 +102,13 @@ document.observe("dom:loaded", function() {
         new Ajax.Request("gethotels.php", {
             method: "POST",
             parameters: { city: $F($("cityfield")), checkin: $F($("checkinfield")), checkout: $F($("checkoutfield")), numpeople: $F($("numpeoplefield")) },
-            onSuccess: successfulResponse,
-            onFailure: failedResponse,
-            onException: exceptionResponse
+            onsuccess: successfulResponse,
+            onfailure: failedResponse,
+            onexception: exceptionResponse
         });
 
-        event.preventDefault();
+        Effect.SlideDown($("hotelsholder"));
+        event.preventDefault(); // Evita que la página vuelva a ser cargada 
 
         // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
         /*event.preventDefault();
@@ -171,6 +172,9 @@ function datesComprobation() {
     }
 }
 
+function updateAutocomplete(xmlhttp) {
+    $("cityfield").innerHTML += xmlhttp.responseText;
+}
 
 function successfulResponse(ajax) {
     // EN LLAMAR ESTA FUNCION LA PAGINA PARECE RECARGARSE RAPIDAMENTE Y NO LLEGAMOS A VER LOS RESULTADOS
