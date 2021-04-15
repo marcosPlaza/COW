@@ -4,6 +4,14 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 document.observe("dom:loaded", function() {
+    Sortable.create('elements', {
+        tag: 'dt',
+        onUpdate: function() {
+            if (Sortable.sequence('elements').join('') == '12345678')
+                confetti.start(5000);
+        }
+    });
+
     var form = $("searchbox");
 
     let city_pattern = /^('|([0-9]{1,2}))?([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
@@ -56,13 +64,12 @@ document.observe("dom:loaded", function() {
                 }
             });
         }
-
+        // DATES COMPROBATION
         if (index === 1 || index === 2) {
             element.observe("change", datesComprobation);
         }
     });
 
-    // EXTRA COMPROBATION
     form.observe("submit", function(event) {
         // CODIGO INUTIL
         /*is_valid = true;
@@ -97,8 +104,7 @@ document.observe("dom:loaded", function() {
 
         // A partir de aqui debemos recuperar los hoteles 
 
-
-        // Primero debemos hacer una request
+        // Debemos hacer una request
         new Ajax.Request("gethotels.php", {
             method: "POST",
             parameters: { city: $F($("cityfield")), checkin: $F($("checkinfield")), checkout: $F($("checkoutfield")), numpeople: $F($("numpeoplefield")) },
@@ -111,16 +117,8 @@ document.observe("dom:loaded", function() {
         event.preventDefault(); // Evita que la página vuelva a ser cargada 
 
         // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
-        /*event.preventDefault();
-        event.stopPropagation();
-        return false;*/
     });
 });
-
-// Function to check valid date
-function isValidDate(d) {
-    return d instanceof Date && !isNaN(d);
-}
 
 // Function to check if checkin and checkout are valid
 function datesComprobation() {
@@ -171,6 +169,12 @@ function datesComprobation() {
         }
     }
 }
+
+// Function to check if it's valid date
+function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
+}
+
 
 function updateAutocomplete(xmlhttp) {
     $("cityfield").innerHTML += xmlhttp.responseText;
