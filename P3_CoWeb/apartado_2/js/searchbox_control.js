@@ -71,6 +71,7 @@ document.observe("dom:loaded", function() {
     });
 
     form.observe("submit", function(event) {
+        console.log("submit");
         // CODIGO INUTIL
         /*is_valid = true;
 
@@ -113,7 +114,7 @@ document.observe("dom:loaded", function() {
             onexception: exceptionResponse
         });
 
-        Effect.SlideDown($("hotelsholder"));
+        //Effect.SlideDown($("hotelsholder"));
         event.preventDefault(); // Evita que la página vuelva a ser cargada 
 
         // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
@@ -182,16 +183,17 @@ function updateAutocomplete(xmlhttp) {
 
 function successfulResponse(ajax) {
     // EN LLAMAR ESTA FUNCION LA PAGINA PARECE RECARGARSE RAPIDAMENTE Y NO LLEGAMOS A VER LOS RESULTADOS
+    console.log("Successful");
     if (ajax.status === 200)
         $("hotelsfound").innerHTML = ajax.responseText;
 }
 
 function failedResponse(ajax) {
-    alert("Failed response");
+    console.log("Failed response");
 }
 
 function exceptionResponse(ajax, exception) {
-    alert("Exception response");
+    console.log("Exception response");
 }
 
 /**
