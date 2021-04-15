@@ -22,7 +22,7 @@ document.observe("dom:loaded", function() {
 
     $A(form).forEach((element, index) => {
         if (element.tagName === 'INPUT') {
-            element.observe("keyup", function() { // change supports firefox datepicker but no chrome datepicker
+            element.observe("keyup", function() {
                 // CHECK REGEX
                 if (!pattern_array[index].match($F(element))) {
                     element.setCustomValidity("Incorrect input was introduced!");
@@ -71,50 +71,17 @@ document.observe("dom:loaded", function() {
     });
 
     form.observe("submit", function(event) {
-        console.log("submit");
-        // CODIGO INUTIL
-        /*is_valid = true;
-
-        $A(form).forEach(element => {
-            if (element.tagName === 'INPUT') {
-                if ($F(element) == "") {
-                    element.classList.add('is-invalid');
-
-                    // hint rellena campo
-                    element.setCustomValidity("Fill this field!");
-                }
-
-                if (element.classList.contains('is-invalid')) {
-                    is_valid = false;
-
-                    // hint revisa el campo
-                    element.setCustomValidity("Incorrect input was introduced!");
-                }
-            }
-        });
-
-        // STOP THE SUBMISSION AND ALSO PARENT'S EVENTS
-        if (!is_valid) {
-            alert("Check out the values submitted!");
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-        } else {
-            alert("BIEN");
-        }*/
-
         // A partir de aqui debemos recuperar los hoteles 
 
         // Debemos hacer una request
         new Ajax.Request("gethotels.php", {
             method: "POST",
             parameters: { city: $F($("cityfield")), checkin: $F($("checkinfield")), checkout: $F($("checkoutfield")), numpeople: $F($("numpeoplefield")) },
-            onsuccess: successfulResponse,
-            onfailure: failedResponse,
-            onexception: exceptionResponse
+            onSuccess: successfulResponse,
+            onFailure: failedResponse
         });
 
-        //Effect.SlideDown($("hotelsholder"));
+        Effect.SlideDown($("hotelsholder"));
         event.preventDefault(); // Evita que la página vuelva a ser cargada 
 
         // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
@@ -182,40 +149,11 @@ function updateAutocomplete(xmlhttp) {
 }
 
 function successfulResponse(ajax) {
-    // EN LLAMAR ESTA FUNCION LA PAGINA PARECE RECARGARSE RAPIDAMENTE Y NO LLEGAMOS A VER LOS RESULTADOS
-    console.log("Successful");
     if (ajax.status === 200)
         $("hotelsfound").innerHTML = ajax.responseText;
 }
 
 function failedResponse(ajax) {
+    alert("Failed Response");
     console.log("Failed response");
 }
-
-function exceptionResponse(ajax, exception) {
-    console.log("Exception response");
-}
-
-/**
- * ===================
- *      SUMMARY
- * ===================
- * 
- * FIREFOX
- * Autocomplete - Only with the first character introduced
- * Date picker - Works fine
- * 
- * SAFARI
- * Autocomplete - Works fine
- * Date picker - Works fine
- * 
- * CHROME
- * Autocomplete - Works fine
- * Date picker - Works fine
- * 
- *  ===================
- *      QUESTIONS
- *  ===================
- * ¿Debe funcionar con todos los navegadores obligatoriamente?
- * ¿Existe alguna forma más eficiente de cargar una única vez la base de datos y hacer la query (solo necesito el nombre de todas las ciudades)?
- */
