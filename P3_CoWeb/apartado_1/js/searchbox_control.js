@@ -4,6 +4,8 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 document.observe("dom:loaded", function() {
+
+    // STATIC ARRAY FOR AUTOCOMPLETER CITY NAMES
     var pkmn_cities = ["Pallet Town",
         "Viridian City",
         "Pewter City",
@@ -31,6 +33,7 @@ document.observe("dom:loaded", function() {
         "Pokémon Stadium"
     ]
 
+    // Sortable regions
     Sortable.create('elements', {
         tag: 'dt',
         onUpdate: function() {
@@ -49,7 +52,7 @@ document.observe("dom:loaded", function() {
 
     $A(form).forEach((element, index) => {
         if (element.tagName === 'INPUT') {
-            element.observe("keyup", function() { // change supports firefox datepicker but no chrome datepicker
+            element.observe("keyup", function() {
                 // CHECK REGEX
                 if (!pattern_array[index].match($F(element))) {
                     element.setCustomValidity("Incorrect input was introduced!");
@@ -65,6 +68,7 @@ document.observe("dom:loaded", function() {
                         element.classList.add('is-valid');
                 }
 
+                // AUTOCOMPLETER
                 if (index === 0)
                     new Autocompleter.Local($("cityfield"), $("city_list"), pkmn_cities, {});
 
@@ -78,6 +82,7 @@ document.observe("dom:loaded", function() {
                 }
             });
         }
+
         // DATES COMPROBATION
         if (index === 1 || index === 2) {
             element.observe("change", datesComprobation);
@@ -86,7 +91,7 @@ document.observe("dom:loaded", function() {
 
     form.observe("submit", function(event) {
         Effect.SlideDown($("hotelsholder"));
-        event.preventDefault(); // Evita que la página vuelva a ser cargada 
+        event.preventDefault(); // Evita que la página vuelva a ser cargada y el efecto se visualiza con exito
     });
 });
 
@@ -95,7 +100,7 @@ function datesComprobation() {
     checkin = $("checkinfield");
     checkout = $("checkoutfield");
 
-    checkin_date = new Date($F(checkin)); // temporal dates
+    checkin_date = new Date($F(checkin));
     checkout_date = new Date($F(checkout));
 
     if (isValidDate(checkin_date) && isValidDate(checkout_date)) {
