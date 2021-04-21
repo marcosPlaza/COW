@@ -1,4 +1,9 @@
 <?php
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+    header("Location: error_pages/405.html");
+    exit("405 Method Not Allowed");
+}
+
 $q = $_REQUEST["q"];
 
 $servername = "localhost";
@@ -38,3 +43,4 @@ try {
 }
 
 $db = null;
+?>
