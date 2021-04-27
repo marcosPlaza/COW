@@ -6,8 +6,6 @@
 document.observe("dom:loaded", function() {
     var form = $("signupform");
 
-    console.log("HOLa");
-
     let username_pattern = /^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/; // Rules here https://stackoverflow.com/questions/12018245/regular-expression-to-validate-username
     let email_pattern = /^[^\s@]+@[^\s@]+$/; // Rules here https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     let password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[\_\-\/$%&·#]).{8,32}$/; // Rules on https://www.section.io/engineering-education/password-strength-checker-javascript/
@@ -50,7 +48,7 @@ document.observe("dom:loaded", function() {
 
     form.observe("submit", function(event) {
         // A partir de aqui debemos recuperar los hoteles 
-        console.log("Submit");
+
         // Debemos hacer una request
         new Ajax.Request("confirmation.php", {
             method: "POST",

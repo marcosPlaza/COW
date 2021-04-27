@@ -4,10 +4,6 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 document.observe("dom:loaded", function() {
-    $("element_7").observe("mouseover", function() {
-        $("element_7").style.color = "red";
-    });
-
     Sortable.create('elements', {
         tag: 'dt',
         onUpdate: function() {
@@ -42,14 +38,12 @@ document.observe("dom:loaded", function() {
                         element.classList.add('is-valid');
 
                     if (index === 0) {
-                        // Ajax Autocomplete only for city input
-                        var xmlhttp = new XMLHttpRequest(); // simplified for clarity
 
-                        xmlhttp.onreadystatechange = function() { //Call a function when the state changes.
-                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // complete and no errors
-                                // DEVUELVE LOS VALORES A LA PRIMERA DE MANERA CORRECTA
-                                updateAutocomplete(this);
-                                // POR OTRO LADO NO SE ACTUALIZAN LOS VALORES HASTA INTRODUCIDA LA SEGUNDA LETRA
+                        var xmlhttp = new XMLHttpRequest();
+
+                        xmlhttp.onreadystatechange = function() {
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                updateAutocomplete(this); // Actualizar vista
                             }
                         };
 
@@ -77,10 +71,14 @@ document.observe("dom:loaded", function() {
     form.observe("submit", function(event) {
         // A partir de aqui debemos recuperar los hoteles 
 
-        // Debemos hacer una request
         new Ajax.Request("gethotels.php", {
             method: "POST",
-            parameters: { city: $F($("cityfield")), checkin: $F($("checkinfield")), checkout: $F($("checkoutfield")), numpeople: $F($("numpeoplefield")) },
+            parameters: {
+                city: $F($("cityfield")),
+                checkin: $F($("checkinfield")),
+                checkout: $F($("checkoutfield")),
+                numpeople: $F($("numpeoplefield"))
+            },
             onSuccess: successfulResponse,
             onFailure: failedResponse
         });

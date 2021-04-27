@@ -1,5 +1,10 @@
 <?php
-$city = $_POST["city"]; // It works
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+    header("Location: error_pages/405.html");
+    exit("405 Method Not Allowed");
+}
+
+$city = $_POST["city"]; 
 $num_people = $_POST["numpeople"];
 
 $servername = "localhost";
