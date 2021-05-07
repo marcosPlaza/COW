@@ -3,16 +3,19 @@
 
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
-document.observe("dom:loaded", function() {
-    Sortable.create('elements', {
-        tag: 'dt',
-        onUpdate: function() {
-            if (Sortable.sequence('elements').join('') == '12345678')
+$(document).ready(function() {
+    // Implement Accordion-Sortable
+    var regionlist = $("#elements");
+
+    regionlist.sortable({
+        update: function() {
+            if (regionlist.sortable('toArray').join('') == '12345678')
                 confetti.start(5000);
         }
     });
 
-    var form = $("searchbox");
+    // Check Out https://blog.trescomatres.com/2020/06/jquery-validation-validar-segun-una-regla-personalizada/
+    // https://code.tutsplus.com/es/tutorials/easy-form-validation-with-jquery--cms-33096
 
     let city_pattern = /^('|([0-9]{1,2}))?([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
     let date_pattern = /^(20)([2-4][1-9]|50)(-)(((0)[1-9])|((1)[0-2]))(-)([0-2][1-9]|[1-2][0-9]|(3)[0-1])$/;
@@ -20,7 +23,40 @@ document.observe("dom:loaded", function() {
 
     let pattern_array = [city_pattern, date_pattern, date_pattern, numpeople_pattern];
 
-    $A(form).forEach((element, index) => {
+    var searchform = $("#searchbox");
+
+    $.validator.addMethod("checkCityName", function(value, element) {
+        console.log(value);
+        console.log(element);
+        var pattern = /^[\w]+$/i;
+        return this.optional(element) || pattern.test(value);
+    }, "El campo debe tener un valor alfanumérico (azAZ09)");
+
+    searchform.validate({
+        rules: {
+            city: {
+                required: true,
+                minlength: 3,
+                onkeyup: true,
+                formAlphanumeric: true
+            },
+            trip_start: {
+
+            },
+            trip_end: {
+
+            },
+            num_people: {
+
+            }
+        }
+    });
+
+    searchform.on("submit", function(event) {
+        alert("Dismiss");
+        event.preventDefault();
+    });
+    /*$A(form).forEach((element, index) => {
         if (element.tagName === 'INPUT') {
             element.observe("keyup", function() {
                 // CHECK REGEX
@@ -43,7 +79,7 @@ document.observe("dom:loaded", function() {
 
                         xmlhttp.onreadystatechange = function() {
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                updateAutocomplete(this); // Actualizar vista
+                                $("cityfield").innerHTML += xmlhttp.responseText; // Actualizar vista
                             }
                         };
 
@@ -87,7 +123,7 @@ document.observe("dom:loaded", function() {
         event.preventDefault(); // Evita que la página vuelva a ser cargada 
 
         // Si llamamos a la function de exito fuera del ambito del handler la pagina vuelve a recargar
-    });
+    });*/
 });
 
 // Function to check if checkin and checkout are valid
