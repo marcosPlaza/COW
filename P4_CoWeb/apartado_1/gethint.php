@@ -23,21 +23,22 @@ try {
 
     $result = $db->query("SELECT name FROM cities")->fetchAll();
 
-    echo '<datalist id="citylist">';
+    $hints = array();
+
     if ($q !== "") {
         $q = strtolower($q);
         $len = strlen($q);
         foreach ($result as $name) {
             $name = strtolower($name["name"]);
             if (stristr($q, substr($name, 0, $len))) {
-                echo '<option value=';
                 $hint = $name;
-                echo $hint;
-                echo '></option>';
+                $hints[] = $hint;
             }
         }
     }
-    echo '</datalist>';
+
+    echo json_encode($hints);
+
 } catch (PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
 }

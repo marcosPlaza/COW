@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
 $username = $_POST["username"];
 $email = $_POST["email"];
-$password = $_POST["password"];
+$password = $_POST["password1"];
 
 $servername = "localhost";
 $dbusername = "root";
