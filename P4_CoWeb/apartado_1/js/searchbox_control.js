@@ -27,9 +27,6 @@ $(document).ready(function() {
         minlength: 1
     });
 
-    /* Date range picker */
-    $('#daterangepicker').daterangepicker();
-
     /* Form validation */
     var searchform = $("#searchboxform");
 
@@ -38,7 +35,7 @@ $(document).ready(function() {
     }, 'Invalid name!');
 
     $.validator.addMethod('dateRangePattern', function(value) {
-        return /^(((0)[1-9])|((1)[0-2]))(\/)([0-2][1-9]|(3)[0-1])(\/)((20)([2-4][1-9]|50)) - (((0)[1-9])|((1)[0-2]))(\/)([0-2][1-9]|(3)[0-1])(\/)((20)([2-4][1-9]|50))$/.test(value);
+        return /^(((0)[1-9])|((1)[0-2]))(\/)((0)[1-9]|(1)[0-9]|(2)[0-9]|(3)[0-1])(\/)((20)([2-4][1-9]|50)) - (((0)[1-9])|((1)[0-2]))(\/)((0)[1-9]|(1)[0-9]|(2)[0-9]|(3)[0-1])(\/)((20)([2-4][1-9]|50))$/.test(value);
     }, 'Invalid date!');
 
     $.validator.addMethod('numPeoplePattern', function(value) {
@@ -68,6 +65,9 @@ $(document).ready(function() {
             numpeople: ""
         }
     });
+
+    /* Date range picker */
+    $('#daterangepicker').daterangepicker();
 
     /* Submission of the form */
     searchform.on("submit", function(event) {
