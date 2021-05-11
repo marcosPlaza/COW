@@ -1,13 +1,25 @@
-// Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
-
 $(document).ready(function() {
     // Implement Accordion-Sortable
     var regionlist = $("#elements");
 
-    regionlist.sortable({
+    regionlist.accordion({
+        collapsible: true,
+        active: false,
+        height: 'fill',
+        header: 'h5'
+    }).sortable({
+        items: '.s_panel',
         update: function() {
             if (regionlist.sortable('toArray').join('') == '12345678')
                 confetti.start(5000);
+        }
+    });
+
+    regionlist.on('accordionactivate', function(event, ui) {
+        if (ui.newPanel.length) {
+            $('#accordion').sortable('disable');
+        } else {
+            $('#accordion').sortable('enable');
         }
     });
 
