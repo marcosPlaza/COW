@@ -77,7 +77,6 @@ $(document).ready(function() {
         if ($(this).valid()) {
             // Convert into a JSON string
             var jsondata = JSON.stringify({ "city": $('#city').val(), "daterangepicker": $('#daterangepicker').val(), "numpeople": $('#numpeople').val() });
-            console.log(jsondata);
 
             $.ajax({
                 type: "POST",
