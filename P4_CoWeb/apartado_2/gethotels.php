@@ -3,6 +3,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     header("Location: error_pages/405.html");
     exit("405 Method Not Allowed");
 }
+
 $jsonObj = json_decode($_POST["formData"]);
 
 $city = $jsonObj->city; 

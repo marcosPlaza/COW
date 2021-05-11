@@ -4,8 +4,13 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
     exit("405 Method Not Allowed");
 }
 
-$city = $_POST["city"]; 
-$num_people = $_POST["numpeople"];
+// Parse XML-Format Request
+$xmlObj = simplexml_load_string($_POST["formData"]) or die("Error: Cannot create object");
+
+$city = $xmlObj->city;
+$num_people = $xmlObj->numpeople;
+//$city = $_POST["city"]; 
+//$num_people = $_POST["numpeople"];
 
 $servername = "localhost";
 $dbusername = "root";

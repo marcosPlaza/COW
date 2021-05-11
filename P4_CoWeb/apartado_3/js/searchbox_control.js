@@ -86,11 +86,21 @@ $(document).ready(function() {
 
     /* Submission of the form */
     searchform.on("submit", function(event) {
+        // Cliente - Servidor
+        // Creacion de la string XML
+        var xmlstring = '<?xml version="1.0" encoding="UTF-8"?><form><city>' + $('#city').val() + '</city><date>' + $('#daterangepicker').val() + '</date><numpeople>' + $('#numpeople').val() + '</numpeople></form>';
+
+        /*parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlstring, "application/xml");
+        console.log(xmlDoc.getElementsByTagName("form").item(0));*/
+
         if ($(this).valid()) {
             $.ajax({
                 type: "POST",
                 url: "gethotels.php",
-                data: searchform.serialize(),
+                // Pasamos la string directamente
+                data: { formData: xmlstring },
+                //data: searchform.serialize(),
                 success: function(result) {
                     // Get the htmlcontent and json, on result
                     var result_array = xmlParser(result);
