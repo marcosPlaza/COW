@@ -17,10 +17,13 @@ $(document).ready(function() {
             $.ajax({
                 url: "gethint.php",
                 type: "POST",
-                dataType: "json", // JSON Parser will be used
+                dataType: "json", // JSON Parser will be used for retrieved data
                 data: { q: request.term },
                 success: function(data) {
                     response(data);
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
         },
@@ -71,43 +74,58 @@ $(document).ready(function() {
 
     /* Submission of the form */
     searchform.on("submit", function(event) {
-        var city = $(this).children().first().children().last().val();
-
         if ($(this).valid()) {
+            // Convert into a JSON string
+            var jsondata = JSON.stringify({ "city": $('#city').val(), "daterangepicker": $('#daterangepicker').val(), "numpeople": $('#numpeople').val() });
+            console.log(jsondata);
+
             $.ajax({
                 type: "POST",
                 url: "gethotels.php",
-                data: searchform.serialize(),
+                data: { formData: jsondata },
                 success: function(result) {
-                    // Get the json on result and then parse
-                    var hotels = jsonParser(result);
-                    if (hotels.length != 0) {
-                        alert('The JSON Object obtained is ' + hotels);
-                        $.each(hotels, function(index) {
-                            var htmlcontent = '<h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3>\
-                            <hr><div class="card mb-3" style="margin-left: 5%; margin-right: 5%"><img src="' + hotels[index]["imagen"] + '" style="height: 350px; object-fit: cover;" alt="Card image cap">\
-                            <div class="card-body" style="text-align: left"><h3 class="contenttitleslight">' + hotels[index]["nombre"] + ' on <strong>' + hotels[index]["ciudad"] + '\
-                            </strong>   <span class="badge badge-secondary" style="margin-left: 10px;">Not rated</span></h3><h5>' + hotels[index]["pais"] + '</h5>\
-                            <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>\
-                            <hr><p class="card-text">Accommodation for ' + hotels[index]["num_personas"] + ' people  located in a ' + hotels[index]["zona"] + ' area. </p>';
+                    // Get the htmlcontent and json, on result
+                    var result_array = jsonParser(result);
 
-                            if (hotels[index]["piscina"] == 1) {
-                                htmlcontent.concat('<p class="card-text" style="color: green">Swimming pool available   <i class="fas fa-swimmer" ></i></p>');
-                            } else {
-                                htmlcontent.concat('<p class="card-text" style="color: darkred">Swimming pool not available   <i class="fas fa-times"></i></p>');
-                            }
+                    // Update the content
+                    var htmlcontent = result_array[0];
+                    $("#hotelsfound").hide().html(htmlcontent).slideDown("slow"); // Slide down at slow speed
 
-                            htmlcontent.concat('<div style="text-align: right"><a href="#" class="btn btn-primary">Show available rooms</a></div></div></div>');
+                    // Here will be the parsed json objects
+                    var hotels = result_array[1];
 
-                            $("#hotelsfound").hide().html(htmlcontent).slideDown("slow"); // Slide down at slow speed
-                        });
-                    } else {
-                        alert('The JSON Object obtained is empty');
-                        var htmlcontent = '<h3><i class="fas fa-search" style="color: gray;"></i> Check the results of your search</h3><hr><h3><i class="fas fa-times-circle" style="color: darkred"></i> No hotels registered on <strong>\
-                        ' + city + '</strong></h3>';
-                        $("#hotelsfound").hide().html(htmlcontent).slideDown("slow"); // Slide down at slow speed
+                    // Display the table inside a modal
+                    var rows = $('#jsonDetails').children();
+                    if (rows.length != 0) {
+                        rows.remove();
                     }
 
+                    if (hotels.length != 0) {
+                        $.each(hotels, function(index) {
+                            $('<tr>\
+                            <td>' + hotels[index]["nombre"] + '</td>\
+                            <td>' + hotels[index]["ciudad"] + '</td>\
+                            <td>' + hotels[index]["pais"] + '</td>\
+                            <td>' + hotels[index]["num_personas"] + '</td>\
+                            <td>' + hotels[index]["zona"] + '</td>\
+                            <td>' + hotels[index]["piscina"] + '</td>\
+                            </tr>').appendTo($('#jsonDetails'));
+                        });
+                    } else {
+                        $('<tr>\
+                            <td>None</td>\
+                            <td>None</td>\
+                            <td>None</td>\
+                            <td>None</td>\
+                            <td>None</td>\
+                            <td>None</td>\
+                            </tr>').appendTo($('#jsonDetails'));
+                    }
+
+                    $('#exampleModal').modal('show');
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
             event.preventDefault();
@@ -115,9 +133,15 @@ $(document).ready(function() {
     });
 });
 
-/* Envelope JSON.parse */
-function jsonParser(json_encoded) {
-    return JSON.parse(json_encoded);
+// JSON Parser
+function jsonParser(result) {
+    // Getting the indexes
+    var startJsonIdx = result.indexOf("[");
+    var lastJsonIdx = result.lastIndexOf("]");
+    var jsonString = result.substring(startJsonIdx, lastJsonIdx + 1);
+
+    // Returning the html content and then the json objects in a single array
+    return [result.substring(0, startJsonIdx), JSON.parse(jsonString)];
 }
 
 /**

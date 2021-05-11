@@ -21,6 +21,9 @@ $(document).ready(function() {
                 data: { q: request.term },
                 success: function(data) {
                     response(data);
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
         },
@@ -78,6 +81,9 @@ $(document).ready(function() {
                 data: searchform.serialize(),
                 success: function(result) {
                     $("#hotelsfound").hide().html(result).slideDown("slow"); // Slide down at slow speed
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
             event.preventDefault();

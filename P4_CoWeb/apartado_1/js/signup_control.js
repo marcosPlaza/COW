@@ -54,6 +54,9 @@ $(document).ready(function() {
                 data: signupform.serialize(),
                 success: function(result) {
                     $("#signupcontainer").hide().html(result).slideDown("slow"); // Slide down at slow speed
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
             event.preventDefault();
