@@ -23,8 +23,10 @@ $(document).ready(function() {
         }
     });
 
+    var searchform = $("#searchboxform");
+
     /* Autocomplete */
-    $("#city").autocomplete({
+    searchform.children().first().children().last().autocomplete({
         source: function(request, response) {
             $.ajax({
                 url: "gethint.php",

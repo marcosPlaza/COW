@@ -23,8 +23,10 @@ $(document).ready(function() {
         }
     });
 
+    var searchform = $("#searchboxform");
+
     /* Autocomplete */
-    $("#city").autocomplete({
+    searchform.children().first().children().last().autocomplete({
         source: function(request, response) {
             $.ajax({
                 url: "gethint.php",
@@ -43,8 +45,6 @@ $(document).ready(function() {
     });
 
     /* Form validation */
-    var searchform = $("#searchboxform");
-
     $.validator.addMethod('cityNamePattern', function(value) {
         return /^('|([0-9]{1,2}))?([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/.test(value);
     }, 'Invalid name!');
