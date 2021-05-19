@@ -7,6 +7,8 @@ $(document).ready(function() {
     /* Form validation */
     var signupform = $("#signupform");
 
+    console.log(signupform.children())
+
     $.validator.addMethod('usernamePattern', function(value) {
         return /^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/.test(value);
     }, 'Invalid username!');
@@ -45,8 +47,15 @@ $(document).ready(function() {
         }
     });
 
+    var checkbox = $('#rememberme');
+
+    checkbox.on("change", function() {
+        console.log($(this).val());
+    });
+
     /* Submission of the form */
     signupform.on("submit", function(event) {
+
         if ($(this).valid()) {
             $.ajax({
                 type: "POST",

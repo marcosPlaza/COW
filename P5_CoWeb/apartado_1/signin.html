@@ -91,7 +91,23 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input id="password1" name="password1" class="form-control" placeholder="Create password" type="password">
+                        <input id="password" name="password" class="form-control" placeholder="Create password" type="password">
+                        <div class="invalid-feedback">
+                            Password must:
+                            <ul>
+                                <li>be from 8 to 32 characters</li>
+                                <li>contain at least one lowercase</li>
+                                <li>contain at least one UPPERCASE</li>
+                                <li>contain at least one number</li>
+                                <li>contain at least one symbol: _, -, /, $, %, &, · or #</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-check" style="padding-bottom: 10px;">
+                        <input class="form-check-input" type="checkbox" id="rememberme" name="rememberme">
+                        <label class="form-check-label" for="rememberme">
+                          Remember me
+                        </label>
                     </div>
                     <!-- form-group// -->
                     <div class="form-group">

@@ -109,11 +109,13 @@ $(document).ready(function() {
                     var htmlcontent = result_array[0];
                     $("#hotelsfound").hide().html(htmlcontent).slideDown("slow"); // Slide down at slow speed
 
+                    // Remove this piece of code
+
                     // Here will be the parsed json objects
-                    var xmlobj = result_array[1];
+                    //var xmlobj = result_array[1];
 
                     // Display the table inside a modal
-                    var rows = $('#xmlDetails').children();
+                    /*var rows = $('#xmlDetails').children();
 
                     if (rows.length != 0) {
                         rows.remove();
@@ -143,7 +145,7 @@ $(document).ready(function() {
                             </tr>').appendTo($('#xmlDetails'));
                     }
 
-                    $('#exampleModal').modal('show');
+                    $('#exampleModal').modal('show');*/
                 },
                 error: function(error) {
                     console.log(error);
