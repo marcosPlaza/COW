@@ -1,8 +1,8 @@
 <?php
-/*if($_SERVER["REQUEST_METHOD"] != "POST"){
+if($_SERVER["REQUEST_METHOD"] != "POST"){
     header("Location: error_pages/405.html");
     exit("405 Method Not Allowed");
-}*/
+}
 
 /**
  * La idea es que si el usuario mantiene una sesion abierta cargue otro home diferente con sus datos presentes
@@ -10,6 +10,8 @@
  * 
  * Duda. No se si es necesario establecer cookie o session. ¿Que diferencia existe entre una y otra?
  */
+
+session_start();
 
 $email = $_POST["email"];
 $password = $_POST["password"];
@@ -36,11 +38,15 @@ try {
 
     if ($exists_mail != false) {
         if(strcmp($password, $exists_mail["password"]) == 0){
-            echo $exists_mail["name"];
+            $_SESSION["username"] = $exists_mail["name"];
+            setcookie("username", $exists_mail["name"]);
+            echo $_SESSION["username"];
         }else{
+            echo "incorrect password";
             // Contraseña incorrecta
         }
     } else {
+        echo "unexistent user";
         // Usuario con mail no existe
     }
 } catch (PDOException $e) {

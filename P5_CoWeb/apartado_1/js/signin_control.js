@@ -4,6 +4,7 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 $(document).ready(function() {
+
     /* Form validation */
     var signinform = $("#signinform");
 
@@ -45,11 +46,14 @@ $(document).ready(function() {
                 url: "signin.php",
                 data: signinform.serialize(),
                 success: function(result) {
-                    // Cambiar los botones de la página principal
-                    // A continuación redirigir a la página principal
+                    // Set session information in client side
+                    if (typeof(Storage) !== "undefined") {
+                        //sessionStorage.setItem("username", result);
+                        console.log("username was stored");
+                    } else {
+                        console.log("Sorry, your browser does not support Web Storage...");
+                    }
                     $(document.location.href = "home.html");
-                    $("#ejemplo").html(result); // Must contain only the name
-                    //$("#exampleModal").modal('show');
                 },
                 error: function(error) {
                     console.log(error);

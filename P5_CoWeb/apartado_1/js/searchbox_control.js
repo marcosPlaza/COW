@@ -1,4 +1,30 @@
 $(document).ready(function() {
+    var username = document.cookie.split(";")[0].split("=")[1];
+    if (username != null) {
+        $("#ejemplo1").text(username);
+        $("#signinbtn").hide();
+        $("#signupbtn").hide();
+        $("#signoutbtn").on("click", function() {
+            $.ajax({
+                type: "GET",
+                url: "signout.php",
+                success: function(result) {
+                    $(document.location.href = "signin.html");
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    } else {
+        $("#signoutbtn").hide();
+    }
+
+    if (sessionStorage !== undefined) {
+        console.log("true");
+    }
+    //console.log(sessionStorage.getItem("username")); // No es comun a las cookies
+
     // Implement Accordion-Sortable
     var regionlist = $("#elements");
 
