@@ -48,7 +48,7 @@ try {
         echo '<h4 class="card-title mt-3 text-center">Upss! You are already a member...   <i class="fas fa-times-circle" style="color: darkred"></i></h4>';
         echo '<p><a href="#">Sign in</a>';
         echo ' or ';
-        echo '<a href="home.html">get back to Poké-Booking homepage</a>.</p>';
+        echo '<a href="index.html">get back to Poké-Booking homepage</a>.</p>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -58,7 +58,7 @@ try {
         echo '<div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">';
         echo '<div class="content" style="padding-bottom: 100px;">';
         echo '<h4 class="card-title mt-3 text-center">Congratulations! Your account has been created successfully <i class="fas fa-check-circle" style="color: green"></i></h4>';
-        echo '<a href="home.html">Back to Poké-Booking homepage</a>';
+        echo '<a href="index.html">Back to Poké-Booking homepage</a>';
         echo '</div>';
         echo '</div>';
         echo '</div>';

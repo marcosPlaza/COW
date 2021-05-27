@@ -25,7 +25,7 @@
     <nav class="navbar">
         <!-- envoltorio del titulo -->
         <div class="titlebox">
-            <a href="home.html">
+            <a href="index.html">
                 <h1 class="navbartextlight">The <b>Poké-B<img src="images/pokeball_small.png"><img src="images/pokeball_small.png">king</b> Service</h1>
                 <h5 class="navbartextlight">Book hotels around the Poké-globe</h5>
             </a>
@@ -96,6 +96,7 @@
                 <hr>
                 <form id="signinform">
                     <!-- form-group// -->
+                    <div class="text-danger" id="incorrect_login" style="padding-bottom: 10px; text-align: center;"></div>
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
@@ -130,7 +131,7 @@
                     </div>
                     <!-- form-group// -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info btn-block"> Sign in now </button>
+                        <button id="login" type="submit" class="btn btn-info btn-block"> Sign in now </button>
                     </div>
                     <!-- form-group// -->
                     <p class="text-center">Not yet a member? <a href="signup.html">Sign up here</a> </p>

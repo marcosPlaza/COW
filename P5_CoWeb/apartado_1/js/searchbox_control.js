@@ -1,7 +1,34 @@
 $(document).ready(function() {
-    var username = document.cookie.split(";")[0].split("=")[1];
-    if (username != null) {
-        $("#ejemplo1").text(username);
+    // CHECK IF A SESSION IS ALIVE
+    /*$.ajax({
+        type: "GET",
+        url: "getsessioninfo.php",
+        success: function(result) {
+            console.log(result);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });*/
+
+    // GET ALL COOKIES
+    var allCookies = document.cookie.split(";");
+
+    var session_started = false;
+
+    // LOOK IF THERE'S A "username" COOKIE
+    allCookies.forEach(element => {
+        var name_value = element.split("=");
+        var cookie_name = name_value[0];
+        var cookie_value = name_value[1];
+        console.log(cookie_name);
+        if (cookie_name.trim() == "PHPSESSID") {
+            session_started = true;
+        }
+    });
+
+    // SET THE CORRECT VIEW
+    if (session_started) {
         $("#signinbtn").hide();
         $("#signupbtn").hide();
         $("#signoutbtn").on("click", function() {
@@ -9,6 +36,8 @@ $(document).ready(function() {
                 type: "GET",
                 url: "signout.php",
                 success: function(result) {
+                    console.log(allCookies);
+                    console.log(result);
                     $(document.location.href = "signin.html");
                 },
                 error: function(error) {
@@ -20,9 +49,9 @@ $(document).ready(function() {
         $("#signoutbtn").hide();
     }
 
-    if (sessionStorage !== undefined) {
+    /*if (sessionStorage !== undefined) {
         console.log("true");
-    }
+    }*/
     //console.log(sessionStorage.getItem("username")); // No es comun a las cookies
 
     // Implement Accordion-Sortable
