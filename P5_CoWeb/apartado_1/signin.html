@@ -19,10 +19,13 @@
     <link rel="stylesheet" href="css/style_apartado1.css" type="text/css">
     <link rel="shortcut icon" href="images/pokeball_small.png">
     <script src="js/signin_control.js" type="text/javascript"></script>
+
 </head>
 
 <body>
+    <!-- Inicio navbar -->
     <nav class="navbar">
+
         <!-- envoltorio del titulo -->
         <div class="titlebox">
             <a href="index.html">
@@ -33,19 +36,27 @@
 
         <!-- botones del navbar -->
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div id="welcome" class="btn-group mr-2" role="group" aria-label="Zero group" style="margin-top: 8px;">
+                <h4 id="nameholder" class="navbartextlight"></h4>
+            </div>
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <button type="button" class="btn"><i class="fa fa-question-circle" style="color: white;"></i>
                     <h7 class="navbartextlight"> Need help?</h7>
                 </button>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <div id="signupbtn" class="btn-group mr-2" role="group" aria-label="Second group">
                 <a class="btn btn-info" href="signup.html"><i class="fas fa-user-plus" style="color: white;"></i>
                     <h7 class="navbartext"> Sign Up</h7>
                 </a>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="Third group">
+            <div id="signinbtn" class="btn-group mr-2" role="group" aria-label="Third group">
                 <a class="btn btn-info" href="signin.html"><i class="fas fa-sign-in-alt" style="color: white;"></i>
                     <h7 class="navbartext"> Sign In</h7>
+                </a>
+            </div>
+            <div id="signoutbtn" class="btn-group mr-2" role="group" aria-label="Four group">
+                <a class="btn btn-info"><i class="fas fa-sign-out-alt" style="color: white;"></i>
+                    <h7 class="navbartext"> Sign Out</h7>
                 </a>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Third group">
@@ -69,24 +80,24 @@
     <!-- Fin alert -->
 
     <!-- Modal -->
-    <!--<div class="modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">XML Object Response details</h5>
+                    <h5 class="modal-title" id="exampleModalLabel2">Attention trainer!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <h5>Welcome back <strong id="loggedusername2">None</strong></h5>
+                    <h5 id="aviso"></h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Gotcha!</button>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 
     <div id="signincontainer" class="container" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">

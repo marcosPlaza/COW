@@ -1,22 +1,10 @@
 <?php
-//include 'config.php';
-//var_dump($_SESSION["username"]);
-//session_start();
-//session_unset();
-//session_destroy();
-//var_dump(session_regenerate_id(TRUE));
-
-// remove 'site_auth' cookie
-//setcookie ($cookie_name, '', time() - $cookie_time); }
-//header("Location: login.php"); exit;
-//}
-
 // Inicializar la sesión.
 // Si está usando session_name("algo"), ¡no lo olvide ahora!
 session_start();
 
 // Destruir todas las variables de sesión.
-$_SESSION = array();
+$_SESSION = array(); // como unset 
 
 // Si se desea destruir la sesión completamente, borre también la cookie de sesión.
 // Nota: ¡Esto destruirá la sesión, y no la información de la sesión!

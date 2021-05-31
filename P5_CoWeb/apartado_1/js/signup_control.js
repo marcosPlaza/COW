@@ -4,6 +4,58 @@
 // Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
 
 $(document).ready(function() {
+    // GET ALL COOKIES
+    var allCookies = document.cookie.split(";");
+
+    var session_started = false;
+
+    allCookies.forEach(element => {
+        var name_value = element.split("=");
+        var cookie_name = name_value[0];
+        var cookie_value = name_value[1];
+
+        if (cookie_name.trim() == "PHPSESSID") {
+            session_started = true;
+        }
+
+        if (cookie_name.trim() == "username") {
+            $("#nameholder").text("Welcome! " + decodeURIComponent(cookie_value));
+        }
+
+        if (cookie_name.trim() == "rememberme") {
+            if (cookie_value.trim() == "Yes") {
+                $("#rememberme").prop('checked', true);
+            } else {
+                $("#rememberme").prop('checked', false);
+            }
+        }
+
+    });
+
+    // UPDATE VIEW
+    if (session_started) {
+        $("#signinbtn").hide();
+        $("#signupbtn").hide();
+        $("#welcome").show();
+        $("#signoutbtn").on("click", function() {
+            $.ajax({
+                type: "GET",
+                url: "signout.php",
+                success: function(result) {
+                    console.log(allCookies);
+                    console.log(result);
+                    $(document.location.href = "signin.html");
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    } else {
+        $("#welcome").hide()
+        $("#signoutbtn").hide();
+    }
+
     /* Form validation */
     var signupform = $("#signupform");
 
@@ -47,24 +99,24 @@ $(document).ready(function() {
         }
     });
 
-    var checkbox = $('#rememberme');
-
-    checkbox.on("change", function() {
-        console.log($(this).val());
-    });
-
     /* Submission of the form */
     signupform.on("submit", function(event) {
-
+        console.log(signupform.serialize());
         if ($(this).valid()) {
             $.ajax({
                 type: "POST",
                 url: "confirmation.php",
                 data: signupform.serialize(),
                 success: function(result) {
+                    console.log("Success");
                     $("#signupcontainer").hide().html(result).slideDown("slow"); // Slide down at slow speed
                 },
+                failure: function(failure) {
+                    console.log("Failure");
+                    console.log(failure);
+                },
                 error: function(error) {
+                    console.log("Error");
                     console.log(error);
                 }
             });

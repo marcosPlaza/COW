@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    // CHECK IF A SESSION IS ALIVE
     /*$.ajax({
         type: "GET",
-        url: "getsessioninfo.php",
+        url: "checksession.php",
         success: function(result) {
             console.log(result);
         },
@@ -21,9 +20,13 @@ $(document).ready(function() {
         var name_value = element.split("=");
         var cookie_name = name_value[0];
         var cookie_value = name_value[1];
-        console.log(cookie_name);
+
         if (cookie_name.trim() == "PHPSESSID") {
             session_started = true;
+        }
+
+        if (cookie_name.trim() == "username") {
+            $("#nameholder").text("Welcome! " + decodeURIComponent(cookie_value));
         }
     });
 
@@ -31,6 +34,7 @@ $(document).ready(function() {
     if (session_started) {
         $("#signinbtn").hide();
         $("#signupbtn").hide();
+        $("#welcome").show();
         $("#signoutbtn").on("click", function() {
             $.ajax({
                 type: "GET",
@@ -46,6 +50,7 @@ $(document).ready(function() {
             });
         });
     } else {
+        $("#welcome").hide()
         $("#signoutbtn").hide();
     }
 
