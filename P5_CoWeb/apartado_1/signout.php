@@ -16,6 +16,8 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
+if(isset($_COOKIE["username"])){ setcookie("username", "", time() - 1); }
+
 // Finalmente, destruir la sesión.
 session_destroy();
 ?>

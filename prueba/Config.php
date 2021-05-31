@@ -2,7 +2,7 @@
 session_start(); // Start Session 
 header('Cache-control: private'); // IE 6 FIX
 // ---------- LOGIN INFO ---------- //
-$config_username = 'user'; 
+$config_username = 'user'; // Son las credenciales de la cookie
 $config_password = 'demo123';
 
 $cookie_name = 'siteAuth';

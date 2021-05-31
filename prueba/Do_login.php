@@ -10,7 +10,7 @@ if(($post_username == $config_username) && ($post_password == $config_password))
     $_SESSION['username'] = $config_username; 
     if($post_autologin == 1){
         $password_hash = md5($config_password); // will result in a 32 characters hash
-        setcookie ($cookie_name, 'usr='.$config_username.'&hash='.$password_hash, time() + $cookie_time);
+        setcookie ($cookie_name, 'usr='.$config_username.'&hash='.$password_hash);
     }
     header("Location: private.php"); exit;
 }

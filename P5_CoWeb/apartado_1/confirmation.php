@@ -11,7 +11,6 @@ if(isset($_SESSION["email"])){
 
 session_start();
 
-
 if(count($_POST)>0){
     $username = $_POST["username"];
     $email = $_POST["email"];
@@ -45,8 +44,10 @@ if(count($_POST)>0){
         // Solucion 1 - Cambiar!!! => Hecho 
         $new_id = $conn->query("SELECT * FROM students ORDER BY id DESC LIMIT 1")->fetch()['id'] + 1;
 
+        $hashed_password = md5($password);
+
         $conn->beginTransaction();
-        $sql = "INSERT INTO students (id, name, email, password) VALUES ('$new_id', '$username', '$email', '$password')";
+        $sql = "INSERT INTO students (id, name, email, password) VALUES ('$new_id', '$username', '$email', '$hashed_password')";
         $conn->exec($sql);
     
         if ($exists_mail->rowCount() > 0) {
@@ -68,6 +69,7 @@ if(count($_POST)>0){
             $_SESSION["email"] = trim($email);
             $_SESSION["password"] = trim($password);
             $_SESSION["username"] = trim($username);
+            $_SESSION["timeout"] = time();
 
             setcookie("username", $_SESSION["username"], time()+(3600*24*7));
 
@@ -80,8 +82,7 @@ if(count($_POST)>0){
             }else{
                 if(isset($_COOKIE["email"])){ setcookie("email", "", time() - 1); }
                 if(isset($_COOKIE["password"])){ setcookie("password", "", time() - 1); }
-                setcookie("rememberme", "No", time()+(3600*24*7)); 
-                $_SESSION["rememberme"] = "No";               
+                if(isset($_COOKIE["rememberme"])){ setcookie("rememberme", "", time() - 1); }
             }
 
             echo '<div class="container" style="padding-top: 30px; padding-bottom: 30px;">';

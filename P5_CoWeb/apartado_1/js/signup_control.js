@@ -14,11 +14,8 @@ $(document).ready(function() {
         var cookie_name = name_value[0];
         var cookie_value = name_value[1];
 
-        if (cookie_name.trim() == "PHPSESSID") {
-            session_started = true;
-        }
-
         if (cookie_name.trim() == "username") {
+            session_started = true;
             $("#nameholder").text("Welcome! " + decodeURIComponent(cookie_value));
         }
 
@@ -52,6 +49,8 @@ $(document).ready(function() {
             });
         });
     } else {
+        $("#signinbtn").show();
+        $("#signupbtn").show();
         $("#welcome").hide()
         $("#signoutbtn").hide();
     }

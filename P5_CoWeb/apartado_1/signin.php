@@ -9,16 +9,16 @@ if(count($_POST)>0){
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    session_start();
+    
     // Si hacemos una nueva petición al servidor antes de todo limpiamos la sesion actual...
-    if(isset($_SESSION["email"]) && (strcmp($_SESSION["email"], trim($email))==0) && (strcmp($_SESSION["password"], trim($password))==0)){
+    if(isset($_SESSION["email"]) && isset($_SESSION["password"]) && (strcmp($_SESSION["email"],$email) == 0) && (strcmp($_SESSION["password"], $password)==0)){
         echo "You are already logged! Close to go to mainpage!";
-        header("Location: index.html");
         exit;
     }else{
         include 'signout.php';
+        session_start();
     }
-
-    session_start();
     
     $servername = "localhost";
     $dbusername = "root";
@@ -40,26 +40,26 @@ if(count($_POST)>0){
         // mail is supposed to be a unique field
         $exists_mail = $conn->query("SELECT * FROM students WHERE email = $quoted_mail")->fetch();
     
-        if ($exists_mail != false) {
+        if ($exists_mail) {
             if(strcmp(md5($password), $exists_mail["password"]) == 0){
                 // Session for the server and save PHPSESSID into Client
                 $_SESSION["email"] = $exists_mail["email"];
-                $_SESSION["password"] = $exists_mail["password"];
+                $_SESSION["password"] = $password;
                 $_SESSION["username"] = $exists_mail["name"];
+                $_SESSION["timeout"] = time();
 
-                setcookie("username", $exists_mail["name"], time()+(3600*24*7));
+                setcookie("username", $_SESSION["username"], time()+(3600*24*7));
                 
                 if(!empty($_POST["rememberme"])){
                     // Cookies for the client (7 days of duration)
-                    setcookie("email", $exists_mail["email"], time()+(3600*24*7));
-                    setcookie("password", $password, time()+(3600*24*7));
+                    setcookie("email", $_SESSION["email"], time()+(3600*24*7));
+                    setcookie("password", $_SESSION["password"], time()+(3600*24*7));
                     setcookie("rememberme", "Yes", time()+(3600*24*7));
                     $_SESSION["rememberme"] = "Yes";
                 }else{
                     if(isset($_COOKIE["email"])){ setcookie("email", "", time() - 1); }
                     if(isset($_COOKIE["password"])){ setcookie("password", "", time() - 1); }
-                    setcookie("rememberme", "No", time()+(3600*24*7)); 
-                    $_SESSION["rememberme"] = "No";               
+                    if(isset($_COOKIE["rememberme"])){ setcookie("rememberme", "", time() - 1); }             
                 }
             }else{
                 // Contraseña incorrecta

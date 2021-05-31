@@ -9,11 +9,8 @@ $(document).ready(function() {
         var cookie_name = name_value[0];
         var cookie_value = name_value[1];
 
-        if (cookie_name.trim() == "PHPSESSID") {
-            session_started = true;
-        }
-
         if (cookie_name.trim() == "username") {
+            session_started = true;
             $("#nameholder").text("Welcome! " + decodeURIComponent(cookie_value));
         }
 
@@ -55,6 +52,8 @@ $(document).ready(function() {
             });
         });
     } else {
+        $("#signinbtn").show();
+        $("#signupbtn").show();
         $("#welcome").hide()
         $("#signoutbtn").hide();
     }
@@ -93,22 +92,22 @@ $(document).ready(function() {
 
     /* Submission of the form */
     signinform.on("submit", function(event) {
-        console.log(signinform.serialize());
         if ($(this).valid()) {
             $.ajax({
                 type: "POST",
                 url: "signin.php",
                 data: signinform.serialize(),
                 success: function(result) {
-                    console.log(result);
                     if (result == "Incorrect password!" || result == "User do not exists!") {
                         $("#incorrect_login").text(result);
                     } else if (result == "You are already logged! Close to go to mainpage!") {
-                        console.log("Ya estas logueado");
                         $("#aviso").text(result);
-                        $('#exampleModal2').modal('show');
+                        $('#exampleModal').on("hide.bs.modal", function() {
+                            $(document.location.href = "index.html");
+                        })
+                        $('#exampleModal').modal('show');
                     } else {
-                        //$(document.location.href = "index.html");
+                        $(document.location.href = "index.html");
                     }
                 },
                 error: function(error) {

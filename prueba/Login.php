@@ -3,7 +3,6 @@ require_once 'config.php';
 
 // Is the user already logged in? Redirect him/her to the private page
 if($_SESSION['username']){
-    var_dump("Hola");
     header("Location: private.php"); 
     exit;
 }

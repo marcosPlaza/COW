@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    /*$.ajax({
+    $.ajax({
         type: "GET",
         url: "checksession.php",
         success: function(result) {
@@ -8,7 +8,7 @@ $(document).ready(function() {
         error: function(error) {
             console.log(error);
         }
-    });*/
+    });
 
     // GET ALL COOKIES
     var allCookies = document.cookie.split(";");
@@ -21,12 +21,10 @@ $(document).ready(function() {
         var cookie_name = name_value[0];
         var cookie_value = name_value[1];
 
-        if (cookie_name.trim() == "PHPSESSID") {
-            session_started = true;
-        }
-
         if (cookie_name.trim() == "username") {
+            session_started = true;
             $("#nameholder").text("Welcome! " + decodeURIComponent(cookie_value));
+            $("#username").text(decodeURIComponent(cookie_value));
         }
     });
 
@@ -52,6 +50,9 @@ $(document).ready(function() {
     } else {
         $("#welcome").hide()
         $("#signoutbtn").hide();
+        $("#userinfo").hide();
+        $("#signinbtn").show();
+        $("#signupbtn").show();
     }
 
     /*if (sessionStorage !== undefined) {
