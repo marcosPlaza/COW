@@ -56,7 +56,7 @@ if(count($_POST)>0){
             echo '<div class="card bg-light" style="box-shadow: 5px 5px 10px #888888;">';
             echo '<div class="content" style="padding-bottom: 100px;">';
             echo '<h4 class="card-title mt-3 text-center">Upss! You are already a member...   <i class="fas fa-times-circle" style="color: darkred"></i></h4>';
-            echo '<p><a href="#">Sign in</a>';
+            echo '<p><a href="signin.html">Sign in</a>';
             echo ' or ';
             echo '<a href="index.html">get back to Poké-Booking homepage</a>.</p>';
             echo '</div>';

@@ -3,10 +3,19 @@ $(document).ready(function() {
         type: "GET",
         url: "checksession.php",
         success: function(result) {
-            console.log(result);
+            if (result === "Session restarted!") {
+                $("#exampleModalLabel").text(result);
+                $('#exampleModal').on("hide.bs.modal", function() {
+                    location.reload();
+                });
+                $('#exampleModal').modal('show');
+            }
+        },
+        failure: function(failure) {
+            console.log("Failure on checking session");
         },
         error: function(error) {
-            console.log(error);
+            console.log("Error on checking session");
         }
     });
 
@@ -38,12 +47,13 @@ $(document).ready(function() {
                 type: "GET",
                 url: "signout.php",
                 success: function(result) {
-                    console.log(allCookies);
-                    console.log(result);
                     $(document.location.href = "signin.html");
                 },
+                failure: function(failure) {
+                    console.log("Failure on sign out");
+                },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on sign out");
                 }
             });
         });
@@ -54,11 +64,6 @@ $(document).ready(function() {
         $("#signinbtn").show();
         $("#signupbtn").show();
     }
-
-    /*if (sessionStorage !== undefined) {
-        console.log("true");
-    }*/
-    //console.log(sessionStorage.getItem("username")); // No es comun a las cookies
 
     // Implement Accordion-Sortable
     var regionlist = $("#elements");
@@ -98,7 +103,7 @@ $(document).ready(function() {
                     response(data);
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on getting hint");
                 }
             });
         },
@@ -151,17 +156,12 @@ $(document).ready(function() {
         // Creacion de la string XML
         var xmlstring = '<?xml version="1.0" encoding="UTF-8"?><form><city>' + $('#city').val() + '</city><date>' + $('#daterangepicker').val() + '</date><numpeople>' + $('#numpeople').val() + '</numpeople></form>';
 
-        /*parser = new DOMParser();
-        var xmlDoc = parser.parseFromString(xmlstring, "application/xml");
-        console.log(xmlDoc.getElementsByTagName("form").item(0));*/
-
         if ($(this).valid()) {
             $.ajax({
                 type: "POST",
                 url: "gethotels.php",
                 // Pasamos la string directamente
                 data: { formData: xmlstring },
-                //data: searchform.serialize(),
                 success: function(result) {
                     // Get the htmlcontent and json, on result
                     var result_array = xmlParser(result);
@@ -169,47 +169,9 @@ $(document).ready(function() {
                     // Update the content
                     var htmlcontent = result_array[0];
                     $("#hotelsfound").hide().html(htmlcontent).slideDown("slow"); // Slide down at slow speed
-
-                    // Remove this piece of code
-
-                    // Here will be the parsed json objects
-                    //var xmlobj = result_array[1];
-
-                    // Display the table inside a modal
-                    /*var rows = $('#xmlDetails').children();
-
-                    if (rows.length != 0) {
-                        rows.remove();
-                    }
-
-                    var hotels = $(xmlobj).find('hotel');
-
-                    if (hotels.length != 0) {
-                        $(hotels).each(function() {
-                            $('<tr>\
-                            <td>' + $(this).attr("name") + '</td>\
-                            <td>' + $(this).attr("city") + '</td>\
-                            <td>' + $(this).attr("country") + '</td>\
-                            <td>' + $(this).attr("numpeople") + '</td>\
-                            <td>' + $(this).attr("zone") + '</td>\
-                            <td>' + $(this).attr("pool") + '</td>\
-                            </tr>').appendTo($('#xmlDetails'));
-                        });
-                    } else {
-                        $('<tr>\
-                            <td>None</td>\
-                            <td>None</td>\
-                            <td>None</td>\
-                            <td>None</td>\
-                            <td>None</td>\
-                            <td>None</td>\
-                            </tr>').appendTo($('#xmlDetails'));
-                    }
-
-                    $('#exampleModal').modal('show');*/
                 },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on getting hotels");
                 }
             });
             event.preventDefault();
@@ -227,9 +189,3 @@ function xmlParser(response) {
     // Returning the html content and then the xml objects in a single array
     return [response.substring(0, startXmlIdx), xmlString];
 }
-
-/**
- * Duda:
- * Debemos implementar nosotros mismos el parser y codificar debidamente el json en php?
- * ¿En que consiste parsear el JSON/XML exactamente? ¿Utilizar el parse?
- */

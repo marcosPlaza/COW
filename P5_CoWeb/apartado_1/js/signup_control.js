@@ -1,8 +1,3 @@
-// https://www.howtocreate.co.uk/referencedvariables.html
-// city.observe("keyup", checkRegex(city, city_pattern)); // NOT WORKING
-
-// Some information was extracted from https://getbootstrap.com/docs/5.0/forms/validation/
-
 $(document).ready(function() {
     // GET ALL COOKIES
     var allCookies = document.cookie.split(";");
@@ -39,12 +34,13 @@ $(document).ready(function() {
                 type: "GET",
                 url: "signout.php",
                 success: function(result) {
-                    console.log(allCookies);
-                    console.log(result);
                     $(document.location.href = "signin.html");
                 },
+                failure: function(failure) {
+                    console.log("Failure on sign out");
+                },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on sign out");
                 }
             });
         });
@@ -57,8 +53,6 @@ $(document).ready(function() {
 
     /* Form validation */
     var signupform = $("#signupform");
-
-    console.log(signupform.children())
 
     $.validator.addMethod('usernamePattern', function(value) {
         return /^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/.test(value);
@@ -111,12 +105,10 @@ $(document).ready(function() {
                     $("#signupcontainer").hide().html(result).slideDown("slow"); // Slide down at slow speed
                 },
                 failure: function(failure) {
-                    console.log("Failure");
-                    console.log(failure);
+                    console.log("Failure on sign up");
                 },
                 error: function(error) {
-                    console.log("Error");
-                    console.log(error);
+                    console.log("Error on sign up");
                 }
             });
             event.preventDefault();

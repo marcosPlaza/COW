@@ -11,13 +11,12 @@ if(count($_POST)>0){
 
     session_start();
     
-    // Si hacemos una nueva petición al servidor antes de todo limpiamos la sesion actual...
-    if(isset($_SESSION["email"]) && isset($_SESSION["password"]) && (strcmp($_SESSION["email"],$email) == 0) && (strcmp($_SESSION["password"], $password)==0)){
+    // Si hacemos una nueva petición al servidor para iniciar sesion antes de todo limpiamos la sesion actual...
+    if(isset($_SESSION["email"]) && isset($_SESSION["password"]) && (strcmp($_SESSION["email"], trim($email)) == 0) && (strcmp($_SESSION["password"], trim($password))==0)){
         echo "You are already logged! Close to go to mainpage!";
         exit;
     }else{
         include 'signout.php';
-        session_start();
     }
     
     $servername = "localhost";

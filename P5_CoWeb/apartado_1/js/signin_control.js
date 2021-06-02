@@ -42,12 +42,13 @@ $(document).ready(function() {
                 type: "GET",
                 url: "signout.php",
                 success: function(result) {
-                    console.log(allCookies);
-                    console.log(result);
                     $(document.location.href = "signin.html");
                 },
+                failure: function(failure) {
+                    console.log("Failure on sign out");
+                },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on sign out");
                 }
             });
         });
@@ -110,8 +111,11 @@ $(document).ready(function() {
                         $(document.location.href = "index.html");
                     }
                 },
+                failure: function(failure) {
+                    console.log("Failure on sign in");
+                },
                 error: function(error) {
-                    console.log(error);
+                    console.log("Error on sign in");
                 }
             });
             event.preventDefault();
